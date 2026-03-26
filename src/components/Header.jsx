@@ -1,13 +1,13 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { useState, useRef, useCallback } from "react";
-import useGlobalClick from "../hooks/useGlobalClick";
+import useGlobalClick from "../hooks/useGlobalClick.js";
 import { PiPencilSimpleLine } from "react-icons/pi";
 import { NavLink } from "react-router-dom";
-import Button from "/src/components/Button.jsx";
+import Button from "./Button.jsx";
 import { RxQuestionMarkCircled } from "react-icons/rx";
-import Features from "./Features";
-import Setting from "./Settings";
+import Features from "../Guest/Start_Chat/Features.jsx";
+import Setting from "../Guest/Start_Chat/Settings.jsx";
 import { useNavigate } from "react-router-dom";
 
 
@@ -17,7 +17,7 @@ export default function Navbar() {
   const featuresRef = useRef(null);
 
   const navigate = useNavigate();
-  function hadleHomePage(){
+  function hadleHomePage() {
     navigate("/")
   }
 

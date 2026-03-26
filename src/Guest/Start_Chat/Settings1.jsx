@@ -1,10 +1,10 @@
-import Card from "./Card";
+import Card from "../../components/Card";
 import { RxCross1 } from "react-icons/rx";
 import { IoToggleSharp } from "react-icons/io5";
 
 export default function Settings1({ onClose }) {
 
-  
+
   return (
     <Card className="scale-85 bg-white rounded-4xl shadow-2xl animate-in fade-in zoom-in duration-300">
       <div className="p-8 w-2xl h-70">
@@ -23,7 +23,7 @@ export default function Settings1({ onClose }) {
             <div className="font-semibold text-xl text-black">
               Improve the model for everyone
               <p className="text-sm mt-2 font-normal text-gray-400">
-               Allow your content to be used to train our models, which makes
+                Allow your content to be used to train our models, which makes
                 ChatGPT better for you and everyone who uses it. We take steps
                 to protect your privacy. <u>Learn more</u>
               </p>

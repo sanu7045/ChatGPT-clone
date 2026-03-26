@@ -1,7 +1,7 @@
 import { useState, useCallback } from "react";
 import useGlobalClick from "../hooks/useGlobalClick";
 import { RxQuestionMarkCircled } from "react-icons/rx";
-import Setting from "./Settings";
+import Setting from "../Guest/Start_Chat/Settings";
 
 export default function Footer({ showMessage = true }) {
 

@@ -1,5 +1,5 @@
 import { useState, useMemo } from "react";
-import responseData from "../data/response.json";
+import useChatHistory from "../hooks/useChatHistory";
 import Card from "./Card";
 import { GoSearch } from "react-icons/go";
 import Input from "./Input";
@@ -12,15 +12,7 @@ function Search({ onClose }) {
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState("");
 
-  const [chatHistory] = useState(() => {
-    const storedHistory = localStorage.getItem("chatHistory");
-    if (storedHistory) {
-      return JSON.parse(storedHistory);
-    }
-    const initialHistory = Object.keys(responseData);
-    localStorage.setItem("chatHistory", JSON.stringify(initialHistory));
-    return initialHistory;
-  });
+  const chatHistory = useChatHistory();
 
   const filteredHistory = useMemo(() => {
     return chatHistory.filter((item) =>
@@ -28,9 +20,7 @@ function Search({ onClose }) {
     );
   }, [chatHistory, searchTerm]);
 
-  function handleNewChat() {
-    navigate("/TempChat");
-  }
+ 
 
   function handleChatClick(sentence) {
     // Navigate to chat or handle click
@@ -63,7 +53,7 @@ function Search({ onClose }) {
         <div className="flex-1 px-4 pb-4">
           <div
             onClick={() => {
-              handleNewChat();
+             
               onClose();
             }}
             className="flex items-center gap-2 text-black cursor-pointer hover:bg-gray-100 p-2 rounded-xl"

@@ -6,7 +6,7 @@ import Input from "./Input";
 import Button from "./Button";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import Main from "/src/components/Main1.jsx";
+import Main from "./Main1.jsx";
 import { useState } from "react";
 
 

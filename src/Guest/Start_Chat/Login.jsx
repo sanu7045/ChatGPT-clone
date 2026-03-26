@@ -1,6 +1,6 @@
-import Button from "../components/Button.jsx";
-import { Card1 } from "../components/Card.jsx";
-import { Input1 } from "../components/Input.jsx";
+import Button from "../../components/Button.jsx";
+import { Card1 } from "../../components/Card.jsx";
+import { Input1 } from "../../components/Input.jsx";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faOpenai,
@@ -14,21 +14,21 @@ import { Link, useNavigate } from "react-router-dom";
 
 export default function Login() {
   const navigate = useNavigate();
-  const handleHome = () =>{
+  const handleHome = () => {
     navigate("/")
   }
   return (
     <>
-    
-        <div className="scale-80 absolute w-35">
-         <button onClick={handleHome} className="hover:cursor-pointer h-10"> <FontAwesomeIcon
-            icon={faOpenai}
-            className="items-center absolute text-3xl text-black "
-          />
+
+      <div className="scale-80 absolute w-35">
+        <button onClick={handleHome} className="hover:cursor-pointer h-10"> <FontAwesomeIcon
+          icon={faOpenai}
+          className="items-center absolute text-3xl text-black "
+        />
           <span className=" m-11 text-xl font-semibold">ChatGPT</span>
-          </button>
-        </div>
-      
+        </button>
+      </div>
+
       <div className="scale-75 justify-self-center -translate-y-10 ">
         <div className="justify-self-center text-2xl font-semibold">Log in</div>
         <div className="mt-5">
@@ -104,7 +104,7 @@ export default function Login() {
           </div>
         </div>
       </div>
-      
+
     </>
   );
 }

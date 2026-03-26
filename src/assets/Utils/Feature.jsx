@@ -1,24 +1,16 @@
-import { useState, useEffect, useRef } from "react";
-import Features from "../../components/Features";
+import { useState, useRef, useCallback } from "react";
+import useGlobalClick from "../../hooks/useGlobalClick";
+import Features from "../../Guest/Start_Chat/Features";
 
 export default function Feature() {
-     const [isFeaturesOpen, setIsFeaturesOpen] = useState(false);
+     const [isFeaturesOpen, setIsFeaturesOpen] = useState(true);
           const featuresRef = useRef(null);
         
-          // Close when clicking outside
-          useEffect(() => {
-            const handleClickOutside = (event) => {
-              if (featuresRef.current && !featuresRef.current.contains(event.target)) {
-                setIsFeaturesOpen(false);
-              }
-            };
-            document.addEventListener("mousedown", handleClickOutside);
-            return () => document.removeEventListener("mousedown", handleClickOutside);
-          }, []);
+          useGlobalClick(featuresRef, useCallback(() => setIsFeaturesOpen(false), []));
   return (
-    <>
+    <div ref={featuresRef}>
   {isFeaturesOpen && <Features />}
      
-    </>
+    </div>
   )
 }

@@ -4,23 +4,18 @@ import { PiPencilSimpleLine, PiStarFourLight, PiCirclesFour } from "react-icons/
 import { IoSearchOutline } from "react-icons/io5";
 import { MdOutlinePhotoLibrary } from "react-icons/md";
 import { AiOutlinePlayCircle } from "react-icons/ai";
-import { useState } from "react";
-import responseData from "../data/response.json";
+import { useState, useRef, useCallback } from "react";
+import useGlobalClick from "../hooks/useGlobalClick";
+import useChatHistory from "../hooks/useChatHistory";
 import { MdWindow } from "react-icons/md";
 import Search from "./Search";
 
 function SearchChats({ toggleSidebar, isSidebarOpen }) {
-    const [chatHistory] = useState(() => {
-        const storedHistory = localStorage.getItem("chatHistory");
-        if (storedHistory) {
-            return JSON.parse(storedHistory);
-        }
-        const initialHistory = Object.keys(responseData);
-        localStorage.setItem("chatHistory", JSON.stringify(initialHistory));
-        return initialHistory;
-    });
+    const chatHistory = useChatHistory();
 
     const [openSearch, setOpenSearch] = useState(false);
+    const searchRef = useRef(null);
+    useGlobalClick(searchRef, useCallback(() => setOpenSearch(false), []));
     return (
         <>
             <div className="w-70 bg-gray-100 h-screen ">
@@ -47,7 +42,7 @@ function SearchChats({ toggleSidebar, isSidebarOpen }) {
                                 <span className="text-sm flex items-center font-medium rounded-md text-gray-800">K</span>
                             </div>
                         </div>
-                        {openSearch && (<div className="absolute -top-15"><Search onClose={() => setOpenSearch(false)} /></div>)}
+                        {openSearch && (<div ref={searchRef} className="absolute -top-15"><Search onClose={() => setOpenSearch(false)} /></div>)}
                         <div className="flex text-gray-800 gap-4  hover:bg-gray-300 rounded-2xl h-10 items-center p-2.5 -mb-3">
                             <MdOutlinePhotoLibrary /><p className="font-normal text-base">Library</p>
                         </div>

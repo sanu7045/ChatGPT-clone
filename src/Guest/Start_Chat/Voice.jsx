@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Button from "../components/Button";
+import Button from "../../components/Button";
 import { LiaAngleRightSolid, LiaAngleLeftSolid } from "react-icons/lia";
 import { Link } from "react-router-dom";
 // import { useNavigate } from "react-router-dom";
@@ -55,58 +55,58 @@ export default function Voice() {
         </div>
 
         <div className="flex items-center justify-center w-full h-40 select-none">
-      
-      {/* 1. LEFT PREVIEW (Fixed Width) */}
-      <div className="w-64 flex flex-col items-center justify-center opacity-60 transition-all duration-500">
-        <p className="text-2xl font-bold text-gray-500 truncate w-full text-center">
-          {voices[prevIdx].name}
-        </p>
-        <p className="text-sm text-gray-400 truncate w-full text-center">
-          {voices[prevIdx].description}
-        </p>
-      </div>
 
-      {/* 2. FIXED NAVIGATION ARROW (Left) */}
-      <div className="w-12 flex justify-center">
-        <button 
-          onClick={handlePrev}
-          className="text-2xl font-bold hover:scale-110 transition-transform cursor-pointer"
-        >
-          <LiaAngleLeftSolid />
-        </button>
-      </div>
+          {/* 1. LEFT PREVIEW (Fixed Width) */}
+          <div className="w-64 flex flex-col items-center justify-center opacity-60 transition-all duration-500">
+            <p className="text-2xl font-bold text-gray-500 truncate w-full text-center">
+              {voices[prevIdx].name}
+            </p>
+            <p className="text-sm text-gray-400 truncate w-full text-center">
+              {voices[prevIdx].description}
+            </p>
+          </div>
 
-      {/* 3. CENTER ACTIVE AREA (Fixed Width) */}
-      <div className="w-80 flex flex-col items-center text-center px-4">
-        <p className="text-3xl font-bold text-black min-h-10 flex items-center">
-          {voices[index].name}
-        </p>
-        <p className="text-lg text-gray-800 min-h-10">
-          {voices[index].description}
-        </p>
-      </div>
+          {/* 2. FIXED NAVIGATION ARROW (Left) */}
+          <div className="w-12 flex justify-center">
+            <button
+              onClick={handlePrev}
+              className="text-2xl font-bold hover:scale-110 transition-transform cursor-pointer"
+            >
+              <LiaAngleLeftSolid />
+            </button>
+          </div>
 
-      {/* 4. FIXED NAVIGATION ARROW (Right) */}
-      <div className="w-12 flex justify-center">
-        <button 
-          onClick={handleNext}
-          className="text-2xl font-bold hover:scale-110 transition-transform cursor-pointer"
-        >
-          <LiaAngleRightSolid />
-        </button>
-      </div>
+          {/* 3. CENTER ACTIVE AREA (Fixed Width) */}
+          <div className="w-80 flex flex-col items-center text-center px-4">
+            <p className="text-3xl font-bold text-black min-h-10 flex items-center">
+              {voices[index].name}
+            </p>
+            <p className="text-lg text-gray-800 min-h-10">
+              {voices[index].description}
+            </p>
+          </div>
 
-      {/* 5. RIGHT PREVIEW (Fixed Width) */}
-      <div className="w-64 flex flex-col items-center justify-center opacity-60 transition-all duration-500">
-        <p className="text-2xl font-bold text-gray-500 truncate w-full text-center">
-          {voices[nextIdx].name}
-        </p>
-        <p className="text-sm text-gray-400 truncate w-full text-center">
-          {voices[nextIdx].description}
-        </p>
-      </div>
+          {/* 4. FIXED NAVIGATION ARROW (Right) */}
+          <div className="w-12 flex justify-center">
+            <button
+              onClick={handleNext}
+              className="text-2xl font-bold hover:scale-110 transition-transform cursor-pointer"
+            >
+              <LiaAngleRightSolid />
+            </button>
+          </div>
 
-    </div>
+          {/* 5. RIGHT PREVIEW (Fixed Width) */}
+          <div className="w-64 flex flex-col items-center justify-center opacity-60 transition-all duration-500">
+            <p className="text-2xl font-bold text-gray-500 truncate w-full text-center">
+              {voices[nextIdx].name}
+            </p>
+            <p className="text-sm text-gray-400 truncate w-full text-center">
+              {voices[nextIdx].description}
+            </p>
+          </div>
+
+        </div>
 
         <div className="mt-15">
           <Link to="/Login">
@@ -122,7 +122,7 @@ export default function Voice() {
         <Link to="/">
           {" "}
           <Button
-          // onClick={handleHome}
+            // onClick={handleHome}
             variant="secondary1"
             className="w-60 h-15 rounded-4xl border-none font-semibold"
           >

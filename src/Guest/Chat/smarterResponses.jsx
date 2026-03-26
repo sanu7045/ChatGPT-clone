@@ -1,5 +1,5 @@
-import Card from "./Card"
-import Button from "./Button"
+import Card from "../../components/Card"
+import Button from "../../components/Button"
 import { Link } from "react-router-dom"
 
 function SmarterResponses() {

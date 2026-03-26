@@ -1,54 +1,31 @@
-import { useState } from "react";
+import useContentLookup from "../../hooks/useContentLookup";
+import useCopyToClipboard from "../../hooks/useCopyToClipboard";
 import { SlNotebook } from "react-icons/sl";
 import { useLocation } from "react-router-dom";
-import data from "../data/response.json";
-import { followUpContent } from "../data/followupsContent";
-import FollowUpQuestions from "./FollowUpQuestions";
+import FollowUpQuestions from "../../components/FollowUpQuestions";
 import PromptHeader from "./PromptHeader";
 import { PiPencilSimpleLineLight, PiCopyLight } from "react-icons/pi";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { BsThreeDotsVertical } from "react-icons/bs";
-import Card from "./Card";
-import Input from "./Input";
-import Button from "./Button";
+import Card from "../../components/Card";
+import Input from "../../components/Input";
+import Button from "../../components/Button";
 import { faPaperclip, faGlobe, faArrowUp, faLightbulb } from "@fortawesome/free-solid-svg-icons";
 import { TiDocumentText } from "react-icons/ti";
 
 
 function SideBar({ toggleSidebar }) {
-    const [promptCopied, setPromptCopied] = useState(false);
     const location = useLocation();
 
     // Extract promptKey from /display/:promptKey
     const match = location.pathname.match(/\/display\/(.+)/);
     const promptKey = match ? decodeURIComponent(match[1]) : null;
 
-    let contentToRender = "";
-    if (promptKey) {
-        const cleanKey = promptKey.replace(/^['"]|['"]$/g, "").trim();
-        const isHiPrompt = cleanKey.toLowerCase() === "hi";
-
-        if (isHiPrompt) {
-            contentToRender = "Hi there! How can I help you?";
-        } else {
-            contentToRender = data[cleanKey];
-            if (!contentToRender) {
-                for (const parentKey in followUpContent) {
-                    if (followUpContent[parentKey][cleanKey]) {
-                        contentToRender = followUpContent[parentKey][cleanKey];
-                        break;
-                    }
-                }
-            }
-        }
-    }
+    const contentToRender = useContentLookup(promptKey);
+    const { copied: promptCopied, copy } = useCopyToClipboard();
     const handlePromptCopy = () => {
-        if (promptKey) {
-            navigator.clipboard.writeText(promptKey);
-            setPromptCopied(true);
-            setTimeout(() => setPromptCopied(false), 2000);
-        }
+        if (promptKey) copy(promptKey);
     };
 
     return (
@@ -74,9 +51,9 @@ function SideBar({ toggleSidebar }) {
                         <div className="flex flex-col gap-4">
                             <div className="flex flex-col gap-1 items-end">
                                 <div className="scale-75 origin-right h-full bg-gray-100 rounded-4xl shadow-lg flex items-center justify-end overflow-hidden">
-                                    <PromptHeader 
-                                        sentence={promptKey} 
-                                        className="m-0 h-full flex items-center" 
+                                    <PromptHeader
+                                        sentence={promptKey}
+                                        className="m-0 h-full flex items-center"
                                         showCopy={false}
                                     />
                                 </div>
@@ -102,7 +79,7 @@ function SideBar({ toggleSidebar }) {
 
                 <Card className="w-85 scale-95 flex justify-self-center -translate-y-5  h-40 rounded-3xl absolute bottom-0 ">
                     <div className="-translate-y-3 scale-95  -translate-x-3 h-10 border-2 pl-2 border-black rounded-2xl flex items-center ">
-                       <TiDocumentText className="text-2xl mr-2 stroke-0" /> <p className="text-black font-medium">New document</p>
+                        <TiDocumentText className="text-2xl mr-2 stroke-0" /> <p className="text-black font-medium">New document</p>
                     </div>
                     <div className="flex items-center scale-85 -ml-8 h-18 -translate-y-5">
                         <Input placeholder="Ask anything">
@@ -127,11 +104,11 @@ function SideBar({ toggleSidebar }) {
                             <FontAwesomeIcon icon={faArrowUp} size="sm" />
                         </button>
                     </span>
-                   
+
                 </Card>
-                 <div className="bottom-1 fixed text-xs text-gray-700 mx-14">
-                        <p>ChatGPT can make mistakes. Check important info.</p>
-                    </div>
+                <div className="bottom-1 fixed text-xs text-gray-700 mx-14">
+                    <p>ChatGPT can make mistakes. Check important info.</p>
+                </div>
             </div>
         </>
     )

@@ -1,4 +1,4 @@
-import Card from "./Card";
+import Card from "../../components/Card";
 import { VscSettings } from "react-icons/vsc";
 import { PiKeyboard } from "react-icons/pi";
 import { FaArrowUpRightFromSquare } from "react-icons/fa6";
@@ -18,20 +18,20 @@ export default function Setting({ side }) {
     <>
       {/* Small Settings Menu */}
       <Card className={`scale-90 w-xs absolute mt-5 right-2 ${positionClass} bg-white border border-gray-200 rounded-3xl shadow-lg z-50 p-2 animate-in fade-in zoom-in duration-200`}>
-        
+
         {/* SETTINGS BUTTON */}
-        <div 
+        <div
           className="flex font-medium gap-2 cursor-pointer hover:bg-gray-100 p-1 rounded-md"
-          onClick={() => setActiveModal('settings')} 
+          onClick={() => setActiveModal('settings')}
         >
           <VscSettings className="text-xl m-1" />
           <span className="justify-self-center text-black">Settings</span>
         </div>
 
         {/* KEYBOARD SHORTCUTS BUTTON */}
-        <div 
+        <div
           className="flex font-medium gap-2 mt-2 cursor-pointer hover:bg-gray-100 p-1 rounded-md"
-          onClick={() => setActiveModal('shortcuts')} 
+          onClick={() => setActiveModal('shortcuts')}
         >
           <PiKeyboard className="text-xl m-1" />
           <span className="text-black">Keyboard shortcuts</span>

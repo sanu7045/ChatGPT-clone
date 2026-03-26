@@ -1,14 +1,14 @@
 import { useState, useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
 import { PiCopyLight, PiPencilSimpleLine } from "react-icons/pi";
-import useContentLookup from "../hooks/useContentLookup";
-import useCopyToClipboard from "../hooks/useCopyToClipboard";
-import Navbar from "./Header";
-import Hero1 from "/src/components/Hero1.jsx";
-import FollowUpQuestions from "./FollowUpQuestions";
-import PromptHeader from "./PromptHeader";
-import SmarterResponses from "./smarterResponses";
-import Message from "./Message";
+import useContentLookup from "../../hooks/useContentLookup.js";
+import useCopyToClipboard from "../../hooks/useCopyToClipboard.js";
+import Navbar from "../../components/Header.jsx";
+import Hero1 from "../../components/Hero1.jsx";
+import FollowUpQuestions from "../../components/FollowUpQuestions.jsx";
+import PromptHeader from "./PromptHeader.jsx";
+import SmarterResponses from "./smarterResponses.jsx";
+import Message from "./Message.jsx";
 
 export default function StreamDisplay({ toggleSidebar, isSidebarOpen }) {
   const { promptKey } = useParams();

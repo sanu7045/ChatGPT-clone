@@ -1,4 +1,4 @@
-import useCopyToClipboard from "../hooks/useCopyToClipboard";
+import useCopyToClipboard from "../../hooks/useCopyToClipboard";
 import { PiCopyLight } from "react-icons/pi";
 
 export default function PromptHeader({ sentence, className, showCopy = true }) {

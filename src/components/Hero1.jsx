@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { faPaperclip, faGlobe, faLightbulb, faArrowUp } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { RiVoiceprintFill } from "react-icons/ri";
@@ -6,9 +7,11 @@ import Card from "./Card";
 import Input from "./Input";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import Feature from "../assets/Utils/Feature";
 
-export default function Hero({ inputValue = "", setInputValue }) {
+export default function Hero1({ inputValue = "", setInputValue }) {
   const navigate = useNavigate();
+  const [showFeature, setShowFeature] = useState(false);
   const handleSubmit = () => {
     if (!inputValue.trim()) return;
     navigate(`/display/${encodeURIComponent(inputValue)}`);
@@ -16,8 +19,12 @@ export default function Hero({ inputValue = "", setInputValue }) {
   };
 
   return (
-    <div className="scale-70 justify-center w-full max-w-4xl z-50">
-
+    <div className="scale-70 justify-center w-full max-w-4xl z-50 relative">
+      {showFeature && (
+        <div className="absolute bottom-full -left-30 mb-4 z-50">
+          <Feature />
+        </div>
+      )}
       <Card className="w-6xl rounded-4xl justify-self-center ">
         <Input
           className="w-full p-4 border border-gray-200 rounded-2xl shadow-sm text-black focus:outline-none focus:ring-2 focus:ring-gray-100"
@@ -28,7 +35,11 @@ export default function Hero({ inputValue = "", setInputValue }) {
 
         <div className="flex justify-between items-center mt-2">
           <span>
-            <Button className="gap-1" variant="secondary">
+            <Button 
+                className="gap-1" 
+                variant="secondary"
+                onClick={() => setShowFeature(!showFeature)}
+            >
               <FontAwesomeIcon icon={faPaperclip} /> Attach
             </Button>
             <Button className="gap-1 ml-2.5" variant="secondary">
