@@ -1,6 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef, useCallback } from "react";
+import useGlobalClick from "../hooks/useGlobalClick";
 import { PiPencilSimpleLine } from "react-icons/pi";
 import { NavLink } from "react-router-dom";
 import Button from "/src/components/Button.jsx";
@@ -20,16 +21,7 @@ export default function Navbar() {
     navigate("/")
   }
 
-  // Close when clicking outside
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (featuresRef.current && !featuresRef.current.contains(event.target)) {
-        setIsFeaturesOpen(false);
-      }
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
+  useGlobalClick(featuresRef, useCallback(() => setIsFeaturesOpen(false), []));
 
 
 
@@ -41,17 +33,7 @@ export default function Navbar() {
     setActiveMenuId((prevId) => (prevId === id ? null : id));
   };
 
-  // Global click listener to close menu when clicking elsewhere
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      // If the click is not on a menu-trigger, close the active menu
-      if (!event.target.closest(".menu-trigger")) {
-        setActiveMenuId(null);
-      }
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
+  useGlobalClick(".menu-trigger", useCallback(() => setActiveMenuId(null), []));
 
   return (
     <div>

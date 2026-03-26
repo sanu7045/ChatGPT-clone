@@ -1,8 +1,8 @@
 import { useState, useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
 import { PiCopyLight, PiPencilSimpleLine } from "react-icons/pi";
-import data from "../data/response.json";
-import { followUpContent } from "../data/followupsContent";
+import useContentLookup from "../hooks/useContentLookup";
+import useCopyToClipboard from "../hooks/useCopyToClipboard";
 import Navbar from "./Header";
 import Hero1 from "/src/components/Hero1.jsx";
 import FollowUpQuestions from "./FollowUpQuestions";
@@ -14,33 +14,12 @@ export default function StreamDisplay({ toggleSidebar, isSidebarOpen }) {
   const { promptKey } = useParams();
   const decodedKey = decodeURIComponent(promptKey);
 
-  // Strip leading and trailing quotes (both single and double) for the lookup
-  const cleanKey = decodedKey.replace(/^['"]|['"]$/g, "").trim();
-
-  const isHiPrompt = cleanKey.toLowerCase() === "hi";
-
-  // Try to find the content in the original response.json FIRST.
-  let matchingContent;
-
-  if (isHiPrompt) {
-    matchingContent = "Hi there! How can I help you?";
-  } else {
-    matchingContent = data[cleanKey];
-    if (!matchingContent) {
-      for (const parentKey in followUpContent) {
-        if (followUpContent[parentKey][cleanKey]) {
-          matchingContent = followUpContent[parentKey][cleanKey];
-          break;
-        }
-      }
-    }
-  }
-
+  const matchingContent = useContentLookup(decodedKey);
+  const isHiPrompt = decodedKey.replace(/^['"]|['"]$/g, "").trim().toLowerCase() === "hi";
   const contentToRender = matchingContent || "Response not found.";
 
   const [chatHistory, setChatHistory] = useState([]);
   const [isDone, setIsDone] = useState(false);
-  const [copied, setCopied] = useState(false);
   const [followUpText, setFollowUpText] = useState("");
   const [inputValue, setInputValue] = useState(""); // Shared state for Hero1's input box
 
@@ -103,11 +82,7 @@ export default function StreamDisplay({ toggleSidebar, isSidebarOpen }) {
     }
   }, [chatHistory, isDone]);
 
-  const handleCopy = () => {
-    navigator.clipboard.writeText(followUpText);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
+  const { copied, copy: handleCopy } = useCopyToClipboard();
 
   return (
     <>
@@ -141,7 +116,7 @@ export default function StreamDisplay({ toggleSidebar, isSidebarOpen }) {
                   {showDoneFeatures && (
                     <div className="flex gap-5 mt-5">
                       <button
-                        onClick={handleCopy}
+                        onClick={() => handleCopy(followUpText)}
                         className="flex items-center gap-2 text-sm transition-all duration-500 text-black hover:opacity-100"
                       >
                         <PiCopyLight className="text-xl" />

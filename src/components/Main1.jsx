@@ -1,4 +1,5 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef, useCallback } from "react";
+import useGlobalClick from "../hooks/useGlobalClick";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faLightbulb, faCode, faFileLines, faGraduationCap,
@@ -34,18 +35,11 @@ export default function Main({ setInputValue, setIsListVisible }) {
       sentences: ["Tell me a mystery fact", "Recommend a random book", "Surprise me with a horoscope"] },
   ];
 
-  useEffect(() => {
-    function handleClickOutside(event) {
-      // Check if the click was OUTSIDE the containerRef element
-      if (containerRef.current && !containerRef.current.contains(event.target)) {
-        setShowMore(false);
-        setActiveCategory(null);
-        if (setIsListVisible) setIsListVisible(false); 
-      }
-    }
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, [setIsListVisible]);
+  useGlobalClick(containerRef, useCallback(() => {
+    setShowMore(false);
+    setActiveCategory(null);
+    if (setIsListVisible) setIsListVisible(false);
+  }, [setIsListVisible]));
 
   const handleSelectSentence = (sentence) => {
     setInputValue(sentence);

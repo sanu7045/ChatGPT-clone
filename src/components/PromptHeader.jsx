@@ -1,13 +1,11 @@
-import { useState } from "react";
+import useCopyToClipboard from "../hooks/useCopyToClipboard";
 import { PiCopyLight } from "react-icons/pi";
 
 export default function PromptHeader({ sentence, className, showCopy = true }) {
-  const [copied, setCopied] = useState(false);
+  const { copied, copy } = useCopyToClipboard();
 
   const handleCopy = () => {
-    navigator.clipboard.writeText(sentence);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+    copy(sentence);
   };
   return (
     <>

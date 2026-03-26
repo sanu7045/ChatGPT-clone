@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import { useState, useCallback } from "react";
+import useGlobalClick from "../hooks/useGlobalClick";
 import { RxQuestionMarkCircled } from "react-icons/rx";
 import Setting from "./Settings";
 
@@ -11,17 +12,7 @@ export default function Footer({ showMessage = true }) {
     setActiveMenuId((prevId) => (prevId === id ? null : id));
   };
 
-  // Global click listener to close menu when clicking elsewhere
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      // If the click is not on a menu-trigger, close the active menu
-      if (!event.target.closest(".menu-trigger")) {
-        setActiveMenuId(null);
-      }
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
+  useGlobalClick(".menu-trigger", useCallback(() => setActiveMenuId(null), []));
 
   return (
     <>
