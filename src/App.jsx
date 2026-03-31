@@ -1,21 +1,21 @@
 import "./App.css";
 import "./index.css";
 import Home from "./Pages/Home";
-import Login from "./Guest/Start_Chat/Login";
-import Voice from "./Guest/Start_Chat/Voice";
-import StreamDisplay from "./Guest/Chat/StreamDisplay";
-import SideBar from "./Guest/Chat/SideBar";
-import { Routes, Route } from "react-router-dom";
-import SearchChats from "./Search_Chat/SearchChats";
-import TempNavbar from "./Search_Chat/TempHeader";
-import Navbar from "./components/Header";
+// import Login from "./Guest/Start_Chat/Login";
+// import Voice from "./Guest/Start_Chat/Voice";
+// import StreamDisplay from "./Guest/Chat/StreamDisplay";
+// import SideBar from "./Guest/Chat/SideBar";
+// import { Routes, Route } from "react-router-dom";
+// import SearchChats from "./Search_Chat/SearchChats";
+// import TempNavbar from "./Search_Chat/TempHeader";
+// import Navbar from "./components/Header";
 import TempChat from "./Pages/TempChat";
-import Hero2 from "./components/Hero2";
-import Search from "./Search_Chat/Search";
-import Upgrade from "./components/Upgrade";
-import LibHeader from "./Library/LibHeader";
-import Images from "./Library/Images";
-import Library from "./Pages/Library";
+// import Hero2 from "./components/Hero2";
+// import Search from "./Search_Chat/Search";
+// import Upgrade from "./components/Upgrade";
+// import LibHeader from "./Library/LibHeader";
+// import Images from "./Library/Images";
+// import Library from "./Pages/Library";
 // import { useState } from "react";
 
 function App() {
