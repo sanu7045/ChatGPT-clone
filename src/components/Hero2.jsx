@@ -8,7 +8,7 @@ import { MdOutlineKeyboardVoice } from "react-icons/md";
 
 function Hero2({ isSidebarOpen }) {
     
-    return (
+    return (  
         <>
             <div className={`flex justify-center items-center h-screen  transition-all duration-300 ${isSidebarOpen ? 'pl-80' : 'pl-0'}`}>
                 <div className="w-full mt-15 max-w-4xl ">
