@@ -1,6 +1,6 @@
-import Button from "./Button"
-import Input, { Input1 } from "./Input"
-import Card from "./Card"
+import Button from "../../components/Button"
+import Input, { Input1 } from "../../components/Input"
+import Card from "../../components/Card"
 import { RiVoiceprintFill } from "react-icons/ri";
 import { GoPlus } from "react-icons/go";
 import { VscSettings } from "react-icons/vsc";
@@ -20,7 +20,7 @@ function Hero2({ isSidebarOpen }) {
                            
                             <div className="flex gap-4 items-center">
                                 <Button className="flex  gap-2 items-center hover:bg-gray-100 p-2 rounded-xl transition-all">
-                               <div className="flex justify-start  rounnded-3xl items-center cursor-pointer absolute bg-gray-100  w-50 -translate-y-15 translate-x-20">  <input type="file" className="" />  </div> <GoPlus className="text-2xl" />
+                                <GoPlus className="text-2xl" />
                                 </Button>
                                 <Button className="flex gap-2 items-center hover:bg-gray-100 p-2 rounded-xl transition-all">
                                     <VscSettings className="text-2xl" /> 

@@ -1,9 +1,9 @@
 import { useState } from "react";
-import SearchChats from "../Search_Chat/SearchChats"
-import Hero2 from "../components/Hero2";
+import SearchChats from "../Authenticated/Search_Chat/SearchChats"
+import Hero2 from "../Authenticated/Search_Chat/Hero2";
 import Footer from "../components/Footer";
-import Library from "./Library";
-import TempHeader from "../Search_Chat/TempHeader";
+import TempHeader from "../Authenticated/Search_Chat/TempHeader";
+import Library from "../Authenticated/Library/Library";
 
 function TempChat() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);

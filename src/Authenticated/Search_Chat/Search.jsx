@@ -1,8 +1,8 @@
 import { useState, useMemo } from "react";
-import useChatHistory from "../hooks/useChatHistory";
-import Card from "../components/Card";
+import useChatHistory from "../../hooks/useChatHistory";
+import Card from "../../components/Card";
 import { GoSearch } from "react-icons/go";
-import Input from "../components/Input";
+import Input from "../../components/Input";
 import { RxCross2 } from "react-icons/rx";
 import { PiPencilSimpleLineLight } from "react-icons/pi";
 import { useNavigate } from "react-router-dom";

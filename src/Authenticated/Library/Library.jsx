@@ -1,10 +1,9 @@
-import LibHeader from "../Library/LibHeader";
+import LibHeader from "./LibHeader";
 
 function Library({ toggleSidebar, isSidebarOpen }) {
     return (
         <>
             <LibHeader toggleSidebar={toggleSidebar} isSidebarOpen={isSidebarOpen} />
-        
         </>
     )
 }

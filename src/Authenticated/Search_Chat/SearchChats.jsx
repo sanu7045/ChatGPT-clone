@@ -5,17 +5,14 @@ import { IoSearchOutline } from "react-icons/io5";
 import { MdOutlinePhotoLibrary } from "react-icons/md";
 import { AiOutlinePlayCircle } from "react-icons/ai";
 import { useState, useRef, useCallback } from "react";
-import useGlobalClick from "../hooks/useGlobalClick";
-import useChatHistory from "../hooks/useChatHistory";
+import useGlobalClick from "../../hooks/useGlobalClick";
+import useChatHistory from "../../hooks/useChatHistory";
 import { MdWindow } from "react-icons/md";
 import Search from "./Search";
-import useImages from "../hooks/useImages";
-import Library from "../Pages/Library";
 import { useNavigate } from "react-router-dom";
 
 function SearchChats({ toggleSidebar, isSidebarOpen, setCurrentView }) {
     const chatHistory = useChatHistory();
-    const { images } = useImages();
 
     const [openSearch, setOpenSearch] = useState(false);
     const searchRef = useRef(null);
@@ -61,8 +58,6 @@ function SearchChats({ toggleSidebar, isSidebarOpen, setCurrentView }) {
 
                         <div onClick={handleLibraryClick} className="group flex text-gray-800 gap-4 hover:bg-gray-300 rounded-2xl h-10 items-center p-2.5 -mb-3 cursor-pointer">
                             <MdOutlinePhotoLibrary /><p className="font-normal text-base">Library</p>
-                            <div className="mr-2 flex items-center opacity-0 group-hover:opacity-100 transition-opacity duration-200 translate-x-30"><span className="text-sm flex items-center font-medium rounded-md text-gray-800">{images.length}</span>
-                            </div>
                         </div>
 
                         <div className="flex mt-2 text-gray-800 gap-4 hover:bg-gray-300 rounded-2xl h-10 items-center p-2.5 -mb-3">
