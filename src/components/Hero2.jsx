@@ -7,6 +7,7 @@ import { VscSettings } from "react-icons/vsc";
 import { MdOutlineKeyboardVoice } from "react-icons/md";
 
 function Hero2({ isSidebarOpen }) {
+    
     return (
         <>
             <div className={`flex justify-center items-center h-screen  transition-all duration-300 ${isSidebarOpen ? 'pl-80' : 'pl-0'}`}>
@@ -19,7 +20,7 @@ function Hero2({ isSidebarOpen }) {
                            
                             <div className="flex gap-4 items-center">
                                 <Button className="flex  gap-2 items-center hover:bg-gray-100 p-2 rounded-xl transition-all">
-                                    <GoPlus className="text-2xl" />
+                               <div className="flex justify-start  rounnded-3xl items-center cursor-pointer absolute bg-gray-100  w-50 -translate-y-15 translate-x-20">  <input type="file" className="" />  </div> <GoPlus className="text-2xl" />
                                 </Button>
                                 <Button className="flex gap-2 items-center hover:bg-gray-100 p-2 rounded-xl transition-all">
                                     <VscSettings className="text-2xl" /> 

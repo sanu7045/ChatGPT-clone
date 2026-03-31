@@ -4,27 +4,37 @@ import { PiPencilSimpleLine, PiStarFourLight, PiCirclesFour } from "react-icons/
 import { IoSearchOutline } from "react-icons/io5";
 import { MdOutlinePhotoLibrary } from "react-icons/md";
 import { AiOutlinePlayCircle } from "react-icons/ai";
-import { useState } from "react";
-import responseData from "../data/response.json";
+import { useState, useRef, useCallback } from "react";
+import useGlobalClick from "../hooks/useGlobalClick";
+import useChatHistory from "../hooks/useChatHistory";
 import { MdWindow } from "react-icons/md";
 import Search from "./Search";
+import useImages from "../hooks/useImages";
+import Library from "../Pages/Library";
+import { useNavigate } from "react-router-dom";
 
-function SearchChats({ toggleSidebar, isSidebarOpen }) {
-    const [chatHistory] = useState(() => {
-        const storedHistory = localStorage.getItem("chatHistory");
-        if (storedHistory) {
-            return JSON.parse(storedHistory);
-        }
-        const initialHistory = Object.keys(responseData);
-        localStorage.setItem("chatHistory", JSON.stringify(initialHistory));
-        return initialHistory;
-    });
+function SearchChats({ toggleSidebar, isSidebarOpen, setCurrentView }) {
+    const chatHistory = useChatHistory();
+    const { images } = useImages();
 
     const [openSearch, setOpenSearch] = useState(false);
+    const searchRef = useRef(null);
+    useGlobalClick(searchRef, useCallback(() => setOpenSearch(false), []));
+
+    const handleLibraryClick = () => {
+        if (setCurrentView) setCurrentView("library");
+    };
+
+    const navigate = useNavigate()
+    function homePage() {
+        navigate("/")
+        if (setCurrentView) setCurrentView("search");
+    }
+
     return (
         <>
-            <div className="w-70 bg-gray-100 h-screen ">
-                <div className="   ">
+            <div className="w-70 bg-gray-100 h-screen fixed ">
+                <div>
                     <div className="flex justify-between text-2xl items-center px-4 pt-4 ">
                         <BsOpenai className="text-2xl" />
                         <TbLayoutSidebar
@@ -32,12 +42,12 @@ function SearchChats({ toggleSidebar, isSidebarOpen }) {
                             className={`text-2xl cursor-pointer transition-opacity ${isSidebarOpen ? 'opacity-80 text-gray-600' : 'opacity-90 text-black'} hover:opacity-100`}
                         />
                     </div>
-                    <div className="flex flex-col  text-xl gap-1 cursor-pointer mt-5">
-                        <div className="flex  text-gray-800 gap-4 hover:bg-gray-300 rounded-2xl h-10 items-center p-2.5 -mb-3">
+                    <div className="flex flex-col  text-xl gap-1 cursor-pointer mt-3 m-2">
+                        <div onClick={homePage} className="flex  text-gray-800 gap-4 hover:bg-gray-300 rounded-2xl h-10 items-center p-2.5 -mb-3">
                             <PiPencilSimpleLine /><p className="font-normal text-base">New chat</p>
                         </div>
 
-                        <div onClick={() => setOpenSearch(true)} className="group flex text-gray-800 gap-4 hover:bg-gray-300 rounded-2xl h-10 items-center p-2.5 -mb-3 cursor-pointer">
+                        <div onClick={() => { setOpenSearch(true)}} className="group flex text-gray-800 gap-4 hover:bg-gray-300 rounded-2xl h-10 items-center p-2.5 -mb-3 cursor-pointer">
 
                             <IoSearchOutline />
                             <p className="font-normal text-base flex-1">Search chats</p>
@@ -47,10 +57,14 @@ function SearchChats({ toggleSidebar, isSidebarOpen }) {
                                 <span className="text-sm flex items-center font-medium rounded-md text-gray-800">K</span>
                             </div>
                         </div>
-                        {openSearch && (<div className="absolute -top-15"><Search onClose={() => setOpenSearch(false)} /></div>)}
-                        <div className="flex text-gray-800 gap-4  hover:bg-gray-300 rounded-2xl h-10 items-center p-2.5 -mb-3">
+                        {openSearch && (<div ref={searchRef} className="absolute -top-15"><Search onClose={() => setOpenSearch(false)} setCurrentView={setCurrentView} /></div>)}
+
+                        <div onClick={handleLibraryClick} className="group flex text-gray-800 gap-4 hover:bg-gray-300 rounded-2xl h-10 items-center p-2.5 -mb-3 cursor-pointer">
                             <MdOutlinePhotoLibrary /><p className="font-normal text-base">Library</p>
+                            <div className="mr-2 flex items-center opacity-0 group-hover:opacity-100 transition-opacity duration-200 translate-x-30"><span className="text-sm flex items-center font-medium rounded-md text-gray-800">{images.length}</span>
+                            </div>
                         </div>
+
                         <div className="flex mt-2 text-gray-800 gap-4 hover:bg-gray-300 rounded-2xl h-10 items-center p-2.5 -mb-3">
                             <AiOutlinePlayCircle /> <p className="font-normal text-base">Sora</p>
                         </div>
@@ -58,7 +72,7 @@ function SearchChats({ toggleSidebar, isSidebarOpen }) {
                             <PiCirclesFour /> <p className="font-normal text-base">GPTs</p>
                         </div>
                         <div className="flex  text-gray-800 gap-4  my-3 h-10 items-center p-3 -mb-4">
-                            <p className="font-normal text-base">Content</p>
+                            <p className="font-semibold text-base">Content</p>
                         </div>
                         <div className="flex text-gray-800 gap-4 hover:bg-gray-300  my-3 h-10 items-center p-3 -mb-2">
                             <div className="-translate-x-10">

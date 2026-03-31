@@ -1,26 +1,18 @@
 import { useState, useMemo } from "react";
-import responseData from "../data/response.json";
-import Card from "./Card";
+import useChatHistory from "../hooks/useChatHistory";
+import Card from "../components/Card";
 import { GoSearch } from "react-icons/go";
-import Input from "./Input";
+import Input from "../components/Input";
 import { RxCross2 } from "react-icons/rx";
 import { PiPencilSimpleLineLight } from "react-icons/pi";
 import { useNavigate } from "react-router-dom";
 import { IoChatbubbleOutline } from "react-icons/io5";
 
-function Search({ onClose }) {
+function Search({ onClose, setCurrentView }) {
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState("");
 
-  const [chatHistory] = useState(() => {
-    const storedHistory = localStorage.getItem("chatHistory");
-    if (storedHistory) {
-      return JSON.parse(storedHistory);
-    }
-    const initialHistory = Object.keys(responseData);
-    localStorage.setItem("chatHistory", JSON.stringify(initialHistory));
-    return initialHistory;
-  });
+  const chatHistory = useChatHistory();
 
   const filteredHistory = useMemo(() => {
     return chatHistory.filter((item) =>
@@ -28,18 +20,21 @@ function Search({ onClose }) {
     );
   }, [chatHistory, searchTerm]);
 
-  function handleNewChat() {
-    navigate("/TempChat");
-  }
+
 
   function handleChatClick(sentence) {
     // Navigate to chat or handle click
     navigate(`/display/${encodeURIComponent(sentence)}`);
     onClose();
   }
-
+ 
+  function homePage() {
+    navigate("/")
+    if (setCurrentView) setCurrentView("search");
+  }
+   
   return (
-    <div className="scale-90 absolute translate-x-75 flex top-24 items-center justify-center z-50">
+    <div className="scale-90 absolute translate-x-55 flex top-20 items-center justify-center z-50">
       <Card className="scale-80 w-full rounded-3xl bg-white flex flex-col max-h-[80vh] overflow-hidden relative">
         <div className="p-4 pb-0">
           <div className="flex items-center gap-3">
@@ -63,8 +58,8 @@ function Search({ onClose }) {
         <div className="flex-1 px-4 pb-4">
           <div
             onClick={() => {
-              handleNewChat();
-              onClose();
+
+             { onClose(), homePage() }
             }}
             className="flex items-center gap-2 text-black cursor-pointer hover:bg-gray-100 p-2 rounded-xl"
           >
