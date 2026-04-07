@@ -4,6 +4,7 @@ import Hero2 from "../Authenticated/Search_Chat/Hero2";
 import Footer from "../components/Footer";
 import TempHeader from "../Authenticated/Search_Chat/TempHeader";
 import Library from "../Authenticated/Library/Library";
+import { Toaster } from "sonner";
 
 function TempChat() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -37,6 +38,10 @@ function TempChat() {
           <Library toggleSidebar={toggleSidebar} isSidebarOpen={isSidebarOpen} />
         )}
       </div>
+      <Toaster 
+        position="top-center" 
+        style={{ marginLeft: isSidebarOpen ? '140px' : '0px', transition: 'margin-left 0.3s ease' }} 
+      />
     </div>
   )
 }

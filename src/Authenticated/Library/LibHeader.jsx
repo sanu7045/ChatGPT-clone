@@ -6,7 +6,7 @@ import { TbLayoutSidebar } from "react-icons/tb";
 function LibHeader({ toggleSidebar, isSidebarOpen }) {
     return (
         <>
-            <div className={` flex justify-between m-2 transition-all duration-300 ${isSidebarOpen ? 'pl-70' : 'pl-0'}`}>               
+            <div className={` flex justify-between m-2 transition-all duration-300 ${isSidebarOpen ? 'pl-5' : 'pl-0'}`}>               
                 <div className="flex items-center gap-4">
                     {!isSidebarOpen && (
                         <TbLayoutSidebar

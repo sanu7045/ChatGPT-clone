@@ -10,6 +10,7 @@ import useChatHistory from "../../hooks/useChatHistory";
 import { MdWindow } from "react-icons/md";
 import Search from "./Search";
 import { useNavigate } from "react-router-dom";
+import { useImage } from "../../hooks/useImage";
 
 function SearchChats({ toggleSidebar, isSidebarOpen, setCurrentView }) {
     const chatHistory = useChatHistory();
@@ -27,7 +28,7 @@ function SearchChats({ toggleSidebar, isSidebarOpen, setCurrentView }) {
         navigate("/")
         if (setCurrentView) setCurrentView("search");
     }
-
+    const { images } = useImage()
     return (
         <>
             <div className="w-70 bg-gray-100 h-screen fixed ">
@@ -44,7 +45,7 @@ function SearchChats({ toggleSidebar, isSidebarOpen, setCurrentView }) {
                             <PiPencilSimpleLine /><p className="font-normal text-base">New chat</p>
                         </div>
 
-                        <div onClick={() => { setOpenSearch(true)}} className="group flex text-gray-800 gap-4 hover:bg-gray-300 rounded-2xl h-10 items-center p-2.5 -mb-3 cursor-pointer">
+                        <div onClick={() => { setOpenSearch(true) }} className="group flex text-gray-800 gap-4 hover:bg-gray-300 rounded-2xl h-10 items-center p-2.5 -mb-3 cursor-pointer">
 
                             <IoSearchOutline />
                             <p className="font-normal text-base flex-1">Search chats</p>
@@ -58,6 +59,9 @@ function SearchChats({ toggleSidebar, isSidebarOpen, setCurrentView }) {
 
                         <div onClick={handleLibraryClick} className="group flex text-gray-800 gap-4 hover:bg-gray-300 rounded-2xl h-10 items-center p-2.5 -mb-3 cursor-pointer">
                             <MdOutlinePhotoLibrary /><p className="font-normal text-base">Library</p>
+                            <div className="flex translate-x-32 text-black text-base opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                                {images.length}
+                            </div>
                         </div>
 
                         <div className="flex mt-2 text-gray-800 gap-4 hover:bg-gray-300 rounded-2xl h-10 items-center p-2.5 -mb-3">
