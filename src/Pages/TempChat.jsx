@@ -5,10 +5,12 @@ import Footer from "../components/Footer";
 import TempHeader from "../Authenticated/Search_Chat/TempHeader";
 import Library from "../Authenticated/Library/Library";
 import { Toaster } from "sonner";
+import { useLocation } from "react-router-dom";
 
 function TempChat() {
+  const location = useLocation();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [currentView, setCurrentView] = useState("search");
+  const [currentView, setCurrentView] = useState(location.state?.view || "search");
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
@@ -18,7 +20,7 @@ function TempChat() {
     <div className="relative h-screen overflow-hidden">
 
       {isSidebarOpen && (
-        <div className="fixed inset-y-0 left-0 w-70 h-full bg-white z-50 border-r shadow-xl">
+        <div className="fixed inset-y-0 left-0 w-65 h-full bg-white z-50 border-r shadow-xl">
           <SearchChats toggleSidebar={toggleSidebar} isSidebarOpen={isSidebarOpen} setCurrentView={setCurrentView} />
         </div>
       )}

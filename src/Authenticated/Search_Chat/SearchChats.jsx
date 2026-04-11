@@ -1,6 +1,6 @@
 import { BsOpenai } from "react-icons/bs";
 import { TbLayoutSidebar } from "react-icons/tb";
-import { PiPencilSimpleLine, PiStarFourLight, PiCirclesFour } from "react-icons/pi";
+import { PiPencilSimpleLine, PiCirclesFour } from "react-icons/pi";
 import { IoSearchOutline } from "react-icons/io5";
 import { MdOutlinePhotoLibrary } from "react-icons/md";
 import { AiOutlinePlayCircle } from "react-icons/ai";
@@ -10,7 +10,8 @@ import useChatHistory from "../../hooks/useChatHistory";
 import { MdWindow } from "react-icons/md";
 import Search from "./Search";
 import { useNavigate } from "react-router-dom";
-import { useImage } from "../../hooks/useImage";
+import { useImage } from "../../hooks/useImage";   
+import { PiSparkle } from "react-icons/pi";
 
 function SearchChats({ toggleSidebar, isSidebarOpen, setCurrentView }) {
     const chatHistory = useChatHistory();
@@ -20,7 +21,11 @@ function SearchChats({ toggleSidebar, isSidebarOpen, setCurrentView }) {
     useGlobalClick(searchRef, useCallback(() => setOpenSearch(false), []));
 
     const handleLibraryClick = () => {
-        if (setCurrentView) setCurrentView("library");
+        if (setCurrentView) {
+            setCurrentView("library");
+        } else {
+            navigate("/", { state: { view: "library" } });
+        }
     };
 
     const navigate = useNavigate()
@@ -31,7 +36,7 @@ function SearchChats({ toggleSidebar, isSidebarOpen, setCurrentView }) {
     const { images } = useImage()
     return (
         <>
-            <div className="w-70 bg-gray-100 h-screen fixed ">
+            <div className="w-65 bg-gray-100 h-screen fixed ">
                 <div>
                     <div className="flex justify-between text-2xl items-center px-4 pt-4 ">
                         <BsOpenai className="text-2xl" />
@@ -58,8 +63,11 @@ function SearchChats({ toggleSidebar, isSidebarOpen, setCurrentView }) {
                         {openSearch && (<div ref={searchRef} className="absolute -top-15"><Search onClose={() => setOpenSearch(false)} setCurrentView={setCurrentView} /></div>)}
 
                         <div onClick={handleLibraryClick} className="group flex text-gray-800 gap-4 hover:bg-gray-300 rounded-2xl h-10 items-center p-2.5 -mb-3 cursor-pointer">
-                            <MdOutlinePhotoLibrary /><p className="font-normal text-base">Library</p>
-                            <div className="flex translate-x-32 text-black text-base opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                            
+                            <MdOutlinePhotoLibrary />
+                            <p className="font-normal text-base ">Library</p>
+
+                            <div  className="mr-2 text-sm ml-25 gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
                                 {images.length}
                             </div>
                         </div>
@@ -80,17 +88,17 @@ function SearchChats({ toggleSidebar, isSidebarOpen, setCurrentView }) {
                         </div>
                         <p className="text-lg font-semibold text-gray-700 ml-3 mt-5">chats</p>
                         <div className="flex-1 overflow-y-auto no-scrollbar max-h-[calc(130vh-450px)] pb-[30vh]  ">
-                            <div className="flex flex-col ">
+                            <div className="flex flex-col">
                                 {chatHistory.map((sentence, index) => (
                                     <div
                                         key={index}
                                         className="group flex items-center justify-between rounded-2xl hover:bg-gray-200 cursor-pointer transition-colors"
                                     >
-                                        <p className="text-sm ml-1 font-normal text-gray-700  p-2">
+                                        <p className="text-sm ml-1 font-normal text-gray-700 p-2">
                                             {sentence}
                                         </p>
-                                        <div className="opacity-0 group-hover:opacity-100 transition-opacity">
-                                            <span className="text-gray-400">...</span>
+                                        <div className="opacity-0 group-hover:opacity-100 transition-opacity mr-1 flex items-center">
+                                            <span className="text-gray-400 flex text-xl mb-2">...</span>
                                         </div>
                                     </div>
                                 ))}
@@ -99,10 +107,10 @@ function SearchChats({ toggleSidebar, isSidebarOpen, setCurrentView }) {
                     </div>
                 </div>
                 <div className="fixed -bottom-3  h-15 bg-gray-100">
-                    <hr className="text-gray-400 w-70" />
-                    <div className="flex items-center mx-6 my-5 gap-5 -translate-y-4">
+                    <hr className="text-gray-400 w-65" />
+                    <div className="w-55 flex items-center mx-2 my-8 gap-3 -translate-y-6 text-xs">
 
-                        <PiStarFourLight className="scale-180 " /><p className="font-medium text-sm text-black">Upgrade plan <br /> <span className="font-normal text-sm text-gray-600">More access to the best models</span></p>
+                        <PiSparkle className="text-2xl" /><p className="font-medium  text-black">Upgrade plan <br /> <span className=" text-gray-600">More access to the best models</span></p>
                     </div>
                 </div>
             </div>

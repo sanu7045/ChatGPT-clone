@@ -8,9 +8,8 @@ import { MdOutlineKeyboardVoice } from "react-icons/md";
 import { useRef } from "react";
 import { toast } from "sonner";
 import { useImage } from "../../hooks/useImage";
-import AddPhoto from "../../components/AddPhoto";
 
-function Hero2({ isSidebarOpen}) {
+function Hero2({ isSidebarOpen, hideText = true, isCentered = true }) {
     const fileInputRef = useRef(null);
     const { addImage } = useImage();
 
@@ -33,9 +32,9 @@ function Hero2({ isSidebarOpen}) {
     
     return (  
         <>
-            <div className={`flex justify-center items-center h-screen  transition-all duration-300 ${isSidebarOpen ? 'pl-70' : 'pl-0'}`}>
-                <div className="w-full mt-15 max-w-4xl ">
-                    <p className="text-2xl font-medium -translate-y-10 text-center">How can I help you today?</p>
+            <div className={`flex justify-center transition-all duration-300 w-screen bg-white ${isCentered ? 'items-center h-screen' : 'my-8'} ${isSidebarOpen ? 'pl-70' : 'pl-0'}`}>
+                <div className={`w-full max-w-7xl ${isCentered ? 'mt-15' : ''}`}>
+                    {hideText && (<p className="text-2xl font-medium -translate-y-10 text-center">How can I help you today?</p>)}
                     <Card className="-translate-y-10 scale-70 rounded-4xl shadow-lg">
                         <Input placeholder="Ask anything..." className="w-full text-lg" />
                         

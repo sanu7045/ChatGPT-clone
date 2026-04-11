@@ -1,10 +1,10 @@
 import React from 'react'
 import TempHeader from '../Search_Chat/TempHeader'
 
-function Share() {
+function Share({ toggleSidebar, isSidebarOpen }) {
   return (
     <>
-      <TempHeader showUpgrade={false} showTemp={false} showShare={true} />
+      <TempHeader showUpgrade={false} showTemp={false} showShare={true} toggleSidebar={toggleSidebar} isSidebarOpen={isSidebarOpen} />
     </>
   )
 }

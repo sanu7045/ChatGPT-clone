@@ -7,10 +7,12 @@ import Button from "../../components/Button";
 import { useState, useRef, useCallback } from "react";
 import Upgrade from "../../components/Upgrade";
 import useGlobalClick from "../../hooks/useGlobalClick";
+import { BsThreeDotsVertical } from "react-icons/bs";
+import { PiShareLight } from "react-icons/pi";
 
 
 
-function TempHeader({ toggleSidebar, isSidebarOpen }) {
+function TempHeader({ toggleSidebar, isSidebarOpen, showTemp = true, showUpgrade = true, showShare = false }) {
     const [isUpgradeOpen, setIsUpgradeOpen] = useState(false);
     const dropdownRef = useRef(null);
 
@@ -22,7 +24,7 @@ function TempHeader({ toggleSidebar, isSidebarOpen }) {
 
     return (
         <>
-            <div className={`relative z-20 flex justify-between items-center transition-all duration-300 ${isSidebarOpen ? 'pl-70' : 'pl-0'}`}>
+            <div className={`relative z-20 flex justify-between items-center transition-all duration-300 ${isSidebarOpen ? 'pl-65 mt-' : 'pl-0'}`}>
                 <div className=" scale-70 flex items-center gap-5">
                     {!isSidebarOpen && (
                         <PiPencilSimpleLine
@@ -42,13 +44,20 @@ function TempHeader({ toggleSidebar, isSidebarOpen }) {
                         )}
                     </button>
                 </div>
-                <Button variant="secondary" className="w-40 h-15 scale-60 flex text-2xl rounded-full gap-2 bg-blue-100 text-blue-600 justify-between items-center">
+
+                {showUpgrade && (<Button variant="secondary" className="w-40 h-15 scale-60 flex text-2xl rounded-full gap-2 bg-blue-100 text-blue-600 justify-between items-center">
                     <PiStarFourFill className="text-2xl" /> <p className=" ">Get Plus</p>
-                </Button>
+                </Button>)}
+
                 <div className="scale-70 flex items-center gap-5">
-                    <Button variant="secondary" className="h-10 w-40 gap-5">
+                    {showTemp && (<Button variant="secondary" className="h-10 w-40 gap-5">
                         <span className="flex gap-2 items-center "><IoTimeOutline className="text-xl" /><p className="text-lg font-normal">Temporary</p></span>
-                    </Button>
+                    </Button>)}
+
+                    {showShare && (<div className="flex items-center gap-3"><Button variant="secondary" className="flex h-10 w-28 gap-3">
+                        <PiShareLight className="text-xl flex" /><p className="text-lg font-normal">Share</p>
+                    </Button><BsThreeDotsVertical className="text-2xl cursor-pointer" /></div>
+                    )}
                     <button className="scale-110 rounded-full cursor-pointer"><IoIosPerson className="text-4xl bg-blue-100 rounded-full" /></button>
                 </div>
             </div>
