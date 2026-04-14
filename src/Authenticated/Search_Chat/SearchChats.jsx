@@ -25,6 +25,7 @@ function SearchChats({ toggleSidebar, isSidebarOpen, setCurrentView }) {
             setCurrentView("library");
         } else {
             navigate("/", { state: { view: "library" } });
+           //navigate(-2)
         }
     };
 

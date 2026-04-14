@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import Processingimage from '../Authenticated/Library/Processingimage';
-import ProcessedImage from '../Authenticated/Library/ProcessedImage';
+import Processingimage from './Processingimage';
+import ProcessedImage from './ProcessedImage';
 
 const LoadingImage = () => {
   const [showSecond, setShowSecond] = useState(false);
@@ -9,20 +9,20 @@ const LoadingImage = () => {
 
     const timer = setTimeout(() => {
       setShowSecond(true);
-    }, 5000);
+    }, 1000);
 
-   
+
     return () => clearTimeout(timer);
   }, []);
 
   return (
     <div>
-       {showSecond ? (
+      {showSecond ? (
         <ProcessedImage />
       ) : (
         <Processingimage />
       )}
-     
+
     </div>
   );
 };

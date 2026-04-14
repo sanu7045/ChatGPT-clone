@@ -4,6 +4,7 @@ import { AiOutlineDislike, AiOutlineLike } from 'react-icons/ai'
 import { HiOutlinePaintBrush } from 'react-icons/hi2'
 import { PiDownloadSimple, PiShareLight } from 'react-icons/pi'
 import { useNavigate } from 'react-router-dom';
+import downloadStoredImage from '../../hooks/useDownloadImage';
 
 function DownloadHeader({isSidebarOpen}) {
     const navigate = useNavigate();
@@ -18,7 +19,7 @@ function DownloadHeader({isSidebarOpen}) {
                 <AiOutlineDislike />
                 <AiOutlineLike />
                 <HiOutlinePaintBrush />
-                <PiDownloadSimple />
+                <PiDownloadSimple onClick={downloadStoredImage} />
                 <PiShareLight />
             </div>
         </div>

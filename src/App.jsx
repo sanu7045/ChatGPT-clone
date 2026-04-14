@@ -5,6 +5,7 @@ import SharePage from "./Authenticated/Library/SharePage";
 import { Routes, Route } from "react-router-dom";
 import DownloadPage from "./Authenticated/Library/DownloadPage";
 import Library from "./Authenticated/Library/Library";
+import ArchiveDelete from "./components/ArchiveDelete";
 
 function App() {
 
@@ -15,8 +16,8 @@ function App() {
         <Route path="/" element={<TempChat />} />
         <Route path="/share" element={<SharePage />} />
         <Route path="/download" element={<DownloadPage />} />
-        {/* <Route path="/library" element={<Library />} /> */}
-      </Routes>
+        <Route path="/library" element={<Library />} />
+ </Routes>
 
     </>
   );
