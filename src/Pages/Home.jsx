@@ -1,6 +1,5 @@
 import Navbar from "../components/Header";
 import Hero from "../components/Hero";
-import Main from "../components/Main1";
 import Footer from "../components/Footer";
 import { useState } from "react";
 export default function Home() {

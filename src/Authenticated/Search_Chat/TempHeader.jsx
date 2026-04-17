@@ -25,28 +25,28 @@ function TempHeader({ toggleSidebar, isSidebarOpen, showTemp = true, showUpgrade
     return (
         <>
             <div className={`relative z-20 flex justify-between items-center transition-all duration-300 ${isSidebarOpen ? 'pl-65 mt-' : 'pl-0'}`}>
-                <div className=" scale-70 flex items-center gap-5">
+                <div className="  flex items-center gap-3 ml-5">
                     {!isSidebarOpen && (
                         <PiPencilSimpleLine
                             onClick={toggleSidebar}
-                            className="text-2xl opacity-80 cursor-pointer hover:opacity-100 transition-opacity"
+                            className="text-xl opacity-80 cursor-pointer hover:opacity-100 transition-opacity"
                         />
                     )}
                     <button className="relative" ref={dropdownRef}>
-                        <p onClick={toggleUpgrade} className="hover:bg-gray-100  text-xl cursor-pointer  rounded-xl p-2 flex items-center gap-2">
+                        <p onClick={toggleUpgrade} className="hover:bg-gray-100  text-base cursor-pointer  rounded-xl flex items-center gap-1">
                             ChatGPT
-                            <FontAwesomeIcon icon={faChevronDown} className="opacity-70 text-sm" />
+                            <FontAwesomeIcon icon={faChevronDown} className="opacity-70 text-xs" />
                         </p>
                         {isUpgradeOpen && (
-                            <div className="absolute top-full left-0 mt-2 z-50">
+                            <div className="absolute top-full left-0 mt-2 z-50 scale-80">
                                 <Upgrade />
                             </div>
                         )}
                     </button>
                 </div>
 
-                {showUpgrade && (<Button variant="secondary" className="w-40 h-15 scale-60 flex text-2xl rounded-full gap-2 bg-blue-100 text-blue-600 justify-between items-center">
-                    <PiStarFourFill className="text-2xl" /> <p className=" ">Get Plus</p>
+                {showUpgrade && (<Button variant="secondary" className="scale-90 w-28 mt-3  scale- flex text-lg rounded-full gap-2 bg-blue-100 text-blue-600 justify-between items-center">
+                    <PiStarFourFill className="text-lg" /> <p>Get Plus</p>
                 </Button>)}
 
                 <div className="scale-70 flex items-center gap-5">
