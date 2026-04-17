@@ -48,6 +48,7 @@ function App() {
 
       {/* <TempChat /> */}
       {/* <Upgrade /> */}
+      {/* <Home/> */}
     </>
   );
 }

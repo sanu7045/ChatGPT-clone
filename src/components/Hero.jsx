@@ -23,6 +23,7 @@ export default function Hero({ inputValue = "", setInputValue }) {
 
   return (
     <>
+    
       <div className="scale-75 relative left-1/2 -translate-x-1/2 w-full max-w-4xl z-10">
         <div className="text-5xl mt-30 justify-self-center">
           <p>What can I help with?</p>
@@ -67,15 +68,16 @@ export default function Hero({ inputValue = "", setInputValue }) {
             )}
           </div>
         </Card>
+          </div>
 
-        <div className="sticky w-full">
+        <div className="scale-80 -mt-10 w-full">
           <Main
             setInputValue={setInputValue}
             isListVisible={isListVisible}
             setIsListVisible={setIsListVisible}
           />
         </div>
-      </div>
+      
     </>
   );
 }
