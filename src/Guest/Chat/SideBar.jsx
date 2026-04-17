@@ -28,32 +28,35 @@ function SideBar({ toggleSidebar }) {
         if (promptKey) copy(promptKey);
     };
 
+   const handleClick = ()=> {
+console.log("clicked")
+    }
     return (
         <>
-            <div className="bg-gray-100 h-screen w-95 z-100 pt-2">
-                <div className="scale-85 flex gap-10 text-2xl">
+            <div className="bg-gray-100 h-screen w-95 z-100 pt-3 pl-3">
+                <div className="flex gap-10 text-xl">
                     <SlNotebook />
                     <button onClick={toggleSidebar}>
-                        <PiPencilSimpleLineLight className="text-3xl cursor-pointer" />
+                        <PiPencilSimpleLineLight className="text-2xl cursor-pointer" />
                     </button>
-                    <span className="text-gray-800 text-lg ">ChatGPT
+                    <span className="text-gray-800 text-base ">ChatGPT
                         <FontAwesomeIcon
                             icon={faChevronDown}
-                            className={` ml-2 text-gray-500 text-lg mt-1 group-hover:text-gray-600 transition-transform`}
-                        /></span>
-                    <div className="translate-x-30">
-                        <BsThreeDotsVertical />
-                    </div>
+                            className={` ml-1 mr-25 text-gray-500 text-sm  group-hover:text-gray-600 transition-transform`}
+                        />
+                    </span>
+                    <BsThreeDotsVertical onClick={handleClick}/>
+
                 </div>
 
                 <div className="flex-1 overflow-y-auto px-5 mt-4 no-scrollbar">
                     {promptKey && (
-                        <div className="flex flex-col gap-4">
+                        <div className="flex flex-col gap-4 ">
                             <div className="flex flex-col gap-1 items-end">
-                                <div className="scale-75 origin-right h-full bg-gray-100 rounded-4xl shadow-lg flex items-center justify-end overflow-hidden">
+                                <div className="scale-80 origin-right h-full  rounded-3xl shadow-xl border flex items-center justify-end">
                                     <PromptHeader
                                         sentence={promptKey}
-                                        className="m-0 h-full flex items-center"
+                                        className=" flex items-center"
                                         showCopy={false}
                                     />
                                 </div>
