@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { Butttons, Featueresf } from './useCard'
+import { Butttons, Featueresf } from './useResuableCard'
 import { GoGlobe } from 'react-icons/go';
-import { Div } from './useCard';
+import { Div } from './useResuableCard';
 import Hero2 from '../Search_Chat/Hero2';
 import TempHeader from '../Search_Chat/TempHeader';
 import Footer from '../../components/Footer';
@@ -25,9 +25,9 @@ function MiddlePart() {
                 </div>
             )}
 
-                <div className={`m-2 transition-all duration-300 ${isSidebarOpen ? '-ml-2' : 'pl-0'}`}>
-                    <TempHeader toggleSidebar={toggleSidebar} isSidebarOpen={isSidebarOpen} showUpgrade={false} showTemp={false} />
-                </div>
+            <div className={`m-2 transition-all duration-300 ${isSidebarOpen ? '-ml-2' : 'pl-0'}`}>
+                <TempHeader toggleSidebar={toggleSidebar} isSidebarOpen={isSidebarOpen} showUpgrade={false} showTemp={false} />
+            </div>
 
             <div className={`transition-all duration-300 ${isSidebarOpen ? 'pl-60' : 'pl-0'}`}>
                 <Featueresf name="DALL.E" link="By ChatGPT" icon={<GoGlobe />} hidediv={false} imgsrc="imges/images11.jpg" showdiv={true} hideicon={false} description="Effortlessly design anything: presentations, logos, social media posts and more." />
@@ -41,9 +41,9 @@ function MiddlePart() {
                 <div className='flex justify-center mt-10'>
                     <Hero2 hideText={false} isCentered={false} />
                 </div>
-                
-                <Butttons/>
-                
+
+                <Butttons />
+
                 <div className='flex justify-end mt-10'>
                     <Footer showMessage={false} />
                 </div>

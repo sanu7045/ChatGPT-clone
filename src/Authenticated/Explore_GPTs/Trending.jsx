@@ -1,4 +1,4 @@
-import Cards from "./useCard.jsx"
+import Cards from "./useResuableCard.jsx"
 
 
 function Trending() {

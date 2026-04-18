@@ -1,10 +1,10 @@
-import Cards from "./useCard.jsx"
+import Cards from "./useResuableCard.jsx"
 import { Link } from "react-router-dom";
 
 
 const Featured = () => {
 
-    
+
     return (
         <>
             <div className={`overflow-y-auto flex flex-col`}>
@@ -12,7 +12,7 @@ const Featured = () => {
                 <p className="text-gray-400 text-sm">Curated top picks from this week</p>
             </div>
             <div className="grid grid-cols-2 gap-y-10 my-5 w-5xl">
-             <Link to="/information">   <Cards className="cursor-pointer"  title="DALL.E" description="OpenAI's legacy image generation model. For our latest model, ask ChatGPT to create an image in the..." link="By ChatGPT" imgsrc="imges/images11.jpg">
+                <Link to="/information">   <Cards className="cursor-pointer" title="DALL.E" description="OpenAI's legacy image generation model. For our latest model, ask ChatGPT to create an image in the..." link="By ChatGPT" imgsrc="imges/images11.jpg">
                 </Cards></Link>
                 <Cards title="Dribble" description="Find Top Designers & Creative Professionals on Dribble. We are where designers gain inspiration, f..." link="By dribble.com" imgsrc="imges/dribble.png">
                 </Cards>
@@ -21,10 +21,10 @@ const Featured = () => {
             </div>
 
 
-          
 
 
-             
+
+
         </>
     )
 }

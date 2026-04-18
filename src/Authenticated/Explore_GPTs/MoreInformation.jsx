@@ -2,17 +2,17 @@ import { GoGlobe } from "react-icons/go";
 import { CiLinkedin } from "react-icons/ci";
 import { FaStar } from "react-icons/fa6";
 import { FaHashtag } from "react-icons/fa6";
-import Cards, { Headerss, Title } from "./useCard";
-import { Conversations } from "./useCard";
-import { Capabilities } from "./useCard";
-import { ProgressBar } from "./useCard";
+import Cards, { Headerss, Title } from "./useResuableCard";
+import { Conversations } from "./useResuableCard";
+import { Capabilities } from "./useResuableCard";
+import { ProgressBar } from "./useResuableCard";
 import { RiNumber1 } from "react-icons/ri";
 import { RiNumber2 } from "react-icons/ri";
 import { RiNumber3 } from "react-icons/ri";
 import { RiNumber4 } from "react-icons/ri";
 import { RiNumber5 } from "react-icons/ri";
 import { IoChatbubbleOutline } from "react-icons/io5";
-import { Featueresf } from "./useCard";
+import { Featueresf } from "./useResuableCard";
 import { Link } from "react-router-dom";
 
 
@@ -20,8 +20,8 @@ function MoreInformation() {
     return (
         <>
             <Headerss />
-            
-          <Featueresf text="Effortlessly design anything: presentations, logos, social media posts and more " name="DALL.E" imgsrc="imges/images11.jpg" link="By ChatGPT" description="Effortlessly design anything: presentations, logos, social media posts and more " />
+
+            <Featueresf text="Effortlessly design anything: presentations, logos, social media posts and more " name="DALL.E" imgsrc="imges/images11.jpg" link="By ChatGPT" description="Effortlessly design anything: presentations, logos, social media posts and more " />
 
             <div className="ml-65">
                 <div className="mt-20 ">
@@ -56,7 +56,7 @@ function MoreInformation() {
                     <Cards className="w-3xl" title="Web Browsing" description="I can browse the web to help you gather information  or conduct research" link="By ChatGPT" imgsrc="imges/image1.jpg" >
                     </Cards>
                 </div>
-              <Link to="/middle">   <div className="cursor-pointer flex items-center rounded-full p-3 gap-3 bg-black text-white justify-center w-4xl mt-10 mb-3">
+                <Link to="/middle">   <div className="cursor-pointer flex items-center rounded-full p-3 gap-3 bg-black text-white justify-center w-4xl mt-10 mb-3">
                     <IoChatbubbleOutline className="text-xl" /> Start Chat
                 </div></Link>
             </div>
