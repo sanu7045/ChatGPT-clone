@@ -11,6 +11,9 @@ import { RiNumber2 } from "react-icons/ri";
 import { RiNumber3 } from "react-icons/ri";
 import { RiNumber4 } from "react-icons/ri";
 import { RiNumber5 } from "react-icons/ri";
+import { IoChatbubbleOutline } from "react-icons/io5";
+import { Featueresf } from "./useCard";
+import { Link } from "react-router-dom";
 
 
 function MoreInformation() {
@@ -18,59 +21,9 @@ function MoreInformation() {
         <>
             <Headerss />
             
-            <div className="flex flex-col gap-3 items-center justify-center">
-                <img src="/imges/images11.jpg" alt="no image" className="object-cover w-20 h-20 rounded-full mt-10" />
-                <p className="text-2xl font-semibold">
-                    DALL.E
-                </p>
-                <span className="text-gray-500 text-sm flex items-center gap-3">
-                    By ChatGPT <p className="bg-gray-200 rounded-full pl-2 pr-2 items-center flex gap-1 text-black">
-                        <GoGlobe />
-                        <CiLinkedin /> +1
-                    </p>
-                </span>
-            </div>
-            <div className="flex flex-col mt-2 items-center justify-center">
-                <p className="text-black text-sm flex items-center">
-                    Effortlessly design anything: presentations, logos, social media posts <br />
-                </p>
-                <p className="text-black text-sm flex items-center">
-                    and more.
-                </p>
-            </div>
+          <Featueresf text="Effortlessly design anything: presentations, logos, social media posts and more " name="DALL.E" imgsrc="imges/images11.jpg" link="By ChatGPT" description="Effortlessly design anything: presentations, logos, social media posts and more " />
 
-            <div className="flex mt-2 items-center justify-center ">
-                <span className="flex flex-col items-center mr-10 ">
-                    <p className="flex items-center gap-2 text-black font-bold">
-                        <FaStar />4.2
-                    </p>
-                    <p className="text-gray-400 text-sm">
-                        Ratings (50K+)
-                    </p>
-                </span>
-                <span className="flex flex-col items-center mr-10 mt-5 ">
-                    <p className="flex items-center text-black font-bold">
-                        <FaHashtag />3
-                    </p>
-                    <p className="text-gray-400 text-sm">
-                        in Research & Analysis
-                    </p>
-                    <p className="text-gray-400 text-sm">
-                        (Global)
-                    </p>
-                </span>
-
-                <span className="flex flex-col items-center mr-10 ">
-                    <p className="flex items-center gap-2 text-black font-bold">
-                        2M+
-                    </p> <p className="text-gray-400 text-sm">
-                        Conversations
-                    </p>
-                </span>
-            </div>
-
-
-            <div className="ml-45">
+            <div className="ml-65">
                 <div className="mt-20 ">
                     <Title title="Conversations" />
                     <div className="grid grid-cols-2 w-3xl items-center gap-5 mt-2">
@@ -100,9 +53,12 @@ function MoreInformation() {
 
                 <div className="mt-15">
                     <Title title="More by ChatGPT" />
-                    <Cards title="Web Browsing" description="i can browse the web to help you gather information  or conduct research" link="By ChatGPT" imgsrc="imges/image1.jpg" number="1" className=" bg-white p-0">
+                    <Cards className="w-3xl" title="Web Browsing" description="I can browse the web to help you gather information  or conduct research" link="By ChatGPT" imgsrc="imges/image1.jpg" >
                     </Cards>
                 </div>
+              <Link to="/middle">   <div className="cursor-pointer flex items-center rounded-full p-3 gap-3 bg-black text-white justify-center w-4xl mt-10 mb-3">
+                    <IoChatbubbleOutline className="text-xl" /> Start Chat
+                </div></Link>
             </div>
         </>
     )

@@ -7,6 +7,7 @@ import DownloadPage from "./Authenticated/Library/DownloadPage";
 import Library from "./Authenticated/Library/Library";
 import MoreInformation from "./Authenticated/Explore_GPTs/MoreInformation";
 import ExplorePage from "./Authenticated/Explore_GPTs/ExplorePage";
+import MiddlePart from "./Authenticated/Explore_GPTs/MiddlePart";
 
 function App() {
 
@@ -20,6 +21,7 @@ function App() {
         <Route path="/library" element={<Library />} />
         <Route path="/explore" element={<ExplorePage />} />
         <Route path="/information" element={<MoreInformation />} />
+        <Route path="/middle" element={<MiddlePart />} />
       </Routes>
 
 

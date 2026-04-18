@@ -3,6 +3,11 @@ import { twMerge } from 'tailwind-merge';
 import { RxCross1 } from "react-icons/rx";
 import { FaCheck } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
+import { GoGlobe } from 'react-icons/go';
+import { CiLinkedin } from 'react-icons/ci';
+import { FaStar } from 'react-icons/fa6';
+import { FaHashtag } from 'react-icons/fa6';
+
 
 
 function Cards({ title, description, link, imgsrc, className, number }) {
@@ -63,13 +68,13 @@ export function Title({ title }) {
 export function Headerss() {
     const navigate = useNavigate();
     const handlePrev = () => {
-       navigate("/", { state: { view: "explore" } });
+        navigate("/", { state: { view: "explore" } });
     }
     return (
         <>
             <div className='flex justify-end gap-5 m-5 '>
-                <BsThreeDots className='cursor-pointer text-2xl'  />
-                <RxCross1 className='cursor-pointer text-2xl'onClick={handlePrev} />
+                <BsThreeDots className='cursor-pointer text-2xl' />
+                <RxCross1 className='cursor-pointer text-2xl' onClick={handlePrev} />
             </div>
         </>
     )
@@ -105,3 +110,71 @@ export const ProgressBar = ({ progress, number }) => {
     );
 };
 
+export const Featueresf = ({ name, imgsrc, link, icon, description, hidediv = true, hideicon = true }) => {
+    return (
+        <>
+            <div className="flex flex-col gap-3 items-center justify-center">
+                <img src={imgsrc} alt="no image" className="object-cover w-20 h-20 rounded-full mt-10" />
+                <p className="text-2xl font-semibold">
+                    {name}
+                </p>
+                <span className="text-gray-500 text-sm flex items-center gap-3">
+                    {link}
+                    {hideicon && (
+                        <p className="bg-gray-200 rounded-full pl-2 pr-2 items-center flex gap-1 text-black">
+                            <GoGlobe />
+                            <CiLinkedin /> +1
+                        </p>)}
+                    {icon}
+                </span>
+            </div>
+            <div className="flex flex-col mt-2 items-center justify-center">
+                <p className="text-black text-sm flex-col flex items-center">
+                    {description}<br />
+                </p>
+
+            </div>
+
+            {hidediv && (<div className="flex mt-2 items-center justify-center ">
+                <span className="flex flex-col items-center mr-10 ">
+                    <p className="flex items-center gap-2 text-black font-bold">
+                        <FaStar />4.2
+                    </p>
+                    <p className="text-gray-400 text-sm">
+                        Ratings (50K+)
+                    </p>
+                </span>
+                <span className="flex flex-col items-center mr-10 mt-5 ">
+                    <p className="flex items-center text-black font-bold">
+                        <FaHashtag />3
+                    </p>
+                    <p className="text-gray-400 text-sm">
+                        in Research & Analysis
+                    </p>
+                    <p className="text-gray-400 text-sm">
+                        (Global)
+                    </p>
+                </span>
+
+                <span className="flex flex-col items-center mr-10 ">
+                    <p className="flex items-center gap-2 text-black font-bold">
+                        2M+
+                    </p> <p className="text-gray-400 text-sm">
+                        Conversations
+                    </p>
+                </span>
+            </div>)}
+
+        </>
+    )
+}
+
+export const Div = ({ text }) => {
+    return (
+        <div className="max-w-40 h-auto flex mt-10 justify-self-center gap-5 bg-gray-100 rounded-xl p-2">
+            <p className="flex items-center text-black text-sm w-lg">
+                {text}
+            </p>
+        </div>
+    )
+}
