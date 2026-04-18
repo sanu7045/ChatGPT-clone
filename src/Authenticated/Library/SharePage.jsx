@@ -5,7 +5,7 @@ import Processingimage from './Processingimage'
 import Hero2 from '../Search_Chat/Hero2'
 import Footer from '../../components/Footer'
 import SearchChats from '../Search_Chat/SearchChats'
-import LoadingImage from './useLoadingImage'
+import LoadingImage from './LoadingImage'
 
 
 function SharePage() {

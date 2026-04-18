@@ -35,6 +35,14 @@ function SearchChats({ toggleSidebar, isSidebarOpen, setCurrentView }) {
         if (setCurrentView) setCurrentView("search");
     }
     const { images } = useImage()
+
+    function explorePage() {
+        if (setCurrentView) {
+            setCurrentView("explore");
+        } else {
+            navigate("/", { state: { view: "explorepage" } });
+        }
+    }
     return (
         <>
             <div className="w-65 bg-gray-100 h-screen fixed ">
@@ -76,7 +84,7 @@ function SearchChats({ toggleSidebar, isSidebarOpen, setCurrentView }) {
                         <div className="flex mt-2 text-gray-800 gap-4 hover:bg-gray-300 rounded-2xl h-10 items-center p-2.5 -mb-3">
                             <AiOutlinePlayCircle /> <p className="font-normal text-base">Sora</p>
                         </div>
-                        <div className="flex  text-gray-800 gap-4 hover:bg-gray-300 rounded-2xl h-10 items-center p-2.5 -mb-4">
+                        <div onClick = {explorePage} className="flex  text-gray-800 gap-4 hover:bg-gray-300 rounded-2xl h-10 items-center p-2.5 -mb-4">
                             <PiCirclesFour /> <p className="font-normal text-base">GPTs</p>
                         </div>
                         <div className="flex  text-gray-800 gap-4  my-3 h-10 items-center p-3 -mb-4">
@@ -84,7 +92,7 @@ function SearchChats({ toggleSidebar, isSidebarOpen, setCurrentView }) {
                         </div>
                         <div className="flex text-gray-800 gap-4 hover:bg-gray-300  my-3 h-10 items-center p-3 -mb-2">
                             <div className="-translate-x-10">
-                                <img src="/src/assets/images.jpg" className="scale-30 object-cover rounded-full h-30 w-30" alt="" />
+                                <img src="/imges/images.jpg" className="scale-30 object-cover rounded-full h-30 w-30" alt="" />
                             </div><p className="font-normal text-base -translate-x-22">Canva</p>
                         </div>
                         <p className="text-lg font-semibold text-gray-700 ml-3 mt-5">chats</p>

@@ -4,6 +4,7 @@ import Hero2 from "../Authenticated/Search_Chat/Hero2";
 import Footer from "../components/Footer";
 import TempHeader from "../Authenticated/Search_Chat/TempHeader";
 import Library from "../Authenticated/Library/Library";
+import ExplorePage from "../Authenticated/Explore_GPTs/ExplorePage";
 import { Toaster } from "sonner";
 import { useLocation } from "react-router-dom";
 
@@ -36,6 +37,8 @@ function TempChat() {
 
             <Footer showMessage={false} />
           </>
+        ) : currentView === "explore" ? (
+          <ExplorePage toggleSidebar={toggleSidebar} isSidebarOpen={isSidebarOpen} />
         ) : (
           <Library toggleSidebar={toggleSidebar} isSidebarOpen={isSidebarOpen} />
         )}

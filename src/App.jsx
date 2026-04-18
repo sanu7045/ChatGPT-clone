@@ -5,7 +5,8 @@ import SharePage from "./Authenticated/Library/SharePage";
 import { Routes, Route } from "react-router-dom";
 import DownloadPage from "./Authenticated/Library/DownloadPage";
 import Library from "./Authenticated/Library/Library";
-import ArchiveDelete from "./components/ArchiveDelete";
+import MoreInformation from "./Authenticated/Explore_GPTs/MoreInformation";
+import ExplorePage from "./Authenticated/Explore_GPTs/ExplorePage";
 
 function App() {
 
@@ -17,7 +18,11 @@ function App() {
         <Route path="/share" element={<SharePage />} />
         <Route path="/download" element={<DownloadPage />} />
         <Route path="/library" element={<Library />} />
- </Routes>
+        <Route path="/explore" element={<ExplorePage />} />
+        <Route path="/information" element={<MoreInformation />} />
+      </Routes>
+
+
 
     </>
   );
