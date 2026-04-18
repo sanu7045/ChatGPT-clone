@@ -21,12 +21,26 @@ export default function Hero({ inputValue = "", setInputValue }) {
 
   const [isListVisible, setIsListVisible] = useState(false);
 
+  
+  const sentences = [
+    "Welcome back, explorer!",
+    "Ready for another session?",
+    "The early bird catches the code.",
+    "Keep it simple, keep it elegant.",
+    "What can I help with?"
+  ];
+
+
+  const [randomText] = useState(() => {
+    const randomIndex = Math.floor(Math.random() * sentences.length);
+    return sentences[randomIndex];
+  });
   return (
     <>
     
       <div className="scale-75 relative left-1/2 -translate-x-1/2 w-full max-w-4xl z-10">
         <div className="text-5xl mt-30 justify-self-center">
-          <p>What can I help with?</p>
+          <p>{randomText}</p>
         </div>
 
         <Card className="w-4xl h-34 rounded-4xl justify-self-center mt-15 mb-5">
