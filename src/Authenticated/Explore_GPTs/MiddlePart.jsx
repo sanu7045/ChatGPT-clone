@@ -1,4 +1,5 @@
-import { Featueresf } from './useCard'
+import { useState } from 'react';
+import { Butttons, Featueresf } from './useCard'
 import { GoGlobe } from 'react-icons/go';
 import { Div } from './useCard';
 import Hero2 from '../Search_Chat/Hero2';
@@ -7,43 +8,46 @@ import Footer from '../../components/Footer';
 import Button from '../../components/Button';
 import { GoPlus } from "react-icons/go";
 import { FiRefreshCw } from "react-icons/fi";
+import SearchChats from '../Search_Chat/SearchChats';
 
 function MiddlePart() {
+    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+    const toggleSidebar = () => {
+        setIsSidebarOpen(!isSidebarOpen);
+    };
+
     return (
-        <div className=''>
-            <div className="m-2">
+        <div className='relative h-screen overflow-y-auto'>
+            {isSidebarOpen && (
+                <div className="fixed inset-y-0 left-0 w-65 h-full bg-white z-50 border-r shadow-xl">
+                    <SearchChats toggleSidebar={toggleSidebar} isSidebarOpen={isSidebarOpen} />
+                </div>
+            )}
 
-                <TempHeader showUpgrade={false} showTemp={false} />
+                <div className={`m-2 transition-all duration-300 ${isSidebarOpen ? '-ml-2' : 'pl-0'}`}>
+                    <TempHeader toggleSidebar={toggleSidebar} isSidebarOpen={isSidebarOpen} showUpgrade={false} showTemp={false} />
+                </div>
+
+            <div className={`transition-all duration-300 ${isSidebarOpen ? 'pl-60' : 'pl-0'}`}>
+                <Featueresf name="DALL.E" link="By ChatGPT" icon={<GoGlobe />} hidediv={false} imgsrc="imges/images11.jpg" showdiv={true} hideicon={false} description="Effortlessly design anything: presentations, logos, social media posts and more." />
+
+                <div className="flex justify-center gap-5">
+                    <Div text="How about an inspirational quote graphic for social me..." />
+                    <Div text="I need a poster for our online store seasonal sale" />
+                    <Div text="Highlight my favourite hiking trail in a Facebook post" />
+                    <Div text="Create an infographic showcasing the benefites of meditation..." />
+                </div>
+                <div className='flex justify-center mt-10'>
+                    <Hero2 hideText={false} isCentered={false} />
+                </div>
+                
+                <Butttons/>
+                
+                <div className='flex justify-end mt-10'>
+                    <Footer showMessage={false} />
+                </div>
             </div>
-
-            <Featueresf name="DALL.E" link="By ChatGPT" icon={<GoGlobe />} hidediv={false} imgsrc="imges/images11.jpg" showdiv={true} hideicon={false} description="Effortlessly design anything: presentations, logos, social media posts and more." />
-
-            <div className="flex justify-center gap-5">
-                <Div text="How about an inspirational quote graphic for social me..." />
-                <Div text="I need a poster for our online store seasonal sale" />
-                <Div text="Highlight my favourite hiking trail in a Facebook post" />
-                <Div text="Create an infographic showcasing the benefites of meditation..." />
-
-            </div>
-            <div className='flex justify-center mt-10'>
-
-                <Hero2 hideText={false} isCentered={false} />
-            </div>
-            <div className='flex justify-center mt-10 gap-5 mb-30 -ml-50'>
-                <Button variant='secondary' className='gap-2 flex items-center w-20'><GoPlus />Gold</Button>
-                <Button variant='secondary' className='gap-2 flex items-center w-20'><GoPlus />Fauvism</Button>
-                <Button variant='secondary' className='gap-2 flex items-center w-20'><GoPlus />Cartoon</Button>
-                <Button variant='secondary' className='gap-2 flex items-center w-28'><GoPlus />Cave art</Button>
-                <Button variant='secondary' className='gap-2 flex items-center w-28'><GoPlus />Close-up</Button>
-                <button className="rounded-full w-10 h-10 justify-center flex items-center border border-gray-200 p-2"><FiRefreshCw /></button>
-            </div>
-            
-
-
-           
-
-
-            <Footer showMessage={false} />
         </div>
     )
 }
