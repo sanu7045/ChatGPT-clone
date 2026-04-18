@@ -126,7 +126,7 @@ export default function Main({ setInputValue, setIsListVisible }) {
               <div key={i}>
                 <div
                   onClick={() => handleSelectSentence(s)}
-                  className="p-4 hover:bg-gray-50 cursor-pointer flex items-center group transition-colors"
+                  className="p-4 mx-6 hover:bg-gray-50 cursor-pointer flex items-center group transition-colors"
                 >
                   <span className="text-gray-400 mr-2 whitespace-nowrap">
                     {activeCategory.label}
