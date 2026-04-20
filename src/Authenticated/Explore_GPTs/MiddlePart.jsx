@@ -5,9 +5,6 @@ import { Div } from './useResuableCard';
 import Hero2 from '../Search_Chat/Hero2';
 import TempHeader from '../Search_Chat/TempHeader';
 import Footer from '../../components/Footer';
-import Button from '../../components/Button';
-import { GoPlus } from "react-icons/go";
-import { FiRefreshCw } from "react-icons/fi";
 import SearchChats from '../Search_Chat/SearchChats';
 
 function MiddlePart() {
@@ -18,7 +15,7 @@ function MiddlePart() {
     };
 
     return (
-        <div className='relative h-screen overflow-y-auto'>
+        <div className='relative h-screen overflow-y-auto scroll-smooth'>
             {isSidebarOpen && (
                 <div className="fixed inset-y-0 left-0 w-65 h-full bg-white z-50 border-r shadow-xl">
                     <SearchChats toggleSidebar={toggleSidebar} isSidebarOpen={isSidebarOpen} />
