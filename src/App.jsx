@@ -15,6 +15,8 @@ import Search from "./components/Search";
 import Upgrade from "./components/Upgrade";
 import { useState } from "react";
 import { Toaster } from "sonner"
+import DeleteChat from "./components/DeleteChat";
+
 function App() {
   const [inputValue, setInputValue] = useState("");
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -48,12 +50,8 @@ function App() {
           </Routes>
         </div>
       </div>
-      {/* <SearchChats /> */}
-      {/* <Search /> */}
-
-      {/* <TempChat /> */}
-      {/* <Upgrade /> */}
-      {/* <Home/> */}
+      {/* <DeleteChat/> */}
+     
     </>
   );
 }
