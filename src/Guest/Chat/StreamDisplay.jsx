@@ -13,7 +13,7 @@ import { AiOutlineLike, AiOutlineDislike, AiOutlineSound } from "react-icons/ai"
 import { FiRefreshCw } from "react-icons/fi";
 import { GoChevronDown } from "react-icons/go";
 
-export default function StreamDisplay({ toggleSidebar, isSidebarOpen }) {
+export default function StreamDisplay({ toggleSidebar, isSidebarOpen, isPencilVisible, setIsPencilVisible }) {
   const { promptKey } = useParams();
   const decodedKey = decodeURIComponent(promptKey);
 
@@ -116,7 +116,7 @@ export default function StreamDisplay({ toggleSidebar, isSidebarOpen }) {
 
                 <div className="flex flex-col">
                   {/* The buttons will only render when isDone is true */}
-                  {showDoneFeatures && (
+                  {showDoneFeatures && isPencilVisible && (
                     <div className="flex items-center gap-5 mt-5">
                       <div
                         onClick={() => handleCopy(followUpText)}
@@ -127,21 +127,25 @@ export default function StreamDisplay({ toggleSidebar, isSidebarOpen }) {
                       <AiOutlineLike className="text-xl" />
                       <AiOutlineDislike className="text-xl" />
                       <AiOutlineSound className="text-xl" />
-                      <button onClick={toggleSidebar} className="hover:opacity-100 flex gap-3">
+                      <button
+                        onClick={() => {
+                          toggleSidebar();
+                          setIsPencilVisible(!isPencilVisible);
+                        }} className="hover:opacity-100 flex gap-3">
                         <PiPencilSimpleLine className="text-xl" />
                       </button>
                       <span className="flex items-center gap-1">
                         <FiRefreshCw className="text-xl" />
                         <GoChevronDown className="text-xl" />
-                      </span>
-                    </div>
-                  )}
+                  </span>
                 </div>
+                  )}
               </div>
             </div>
-          );
+            </div>
+      );
         })}
-      </div>
+    </div >
 
       {!isSidebarOpen && (
         <div className="fixed translate-y-4 bottom-0 w-full flex-col flex items-center justify-center z-1 bg-white">
@@ -154,7 +158,8 @@ export default function StreamDisplay({ toggleSidebar, isSidebarOpen }) {
             <Hero1 inputValue={inputValue} setInputValue={setInputValue} />
           </div>
         </div>
-      )}
+      )
+}
     </>
   );
 }

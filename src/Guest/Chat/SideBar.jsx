@@ -19,8 +19,11 @@ import { GoChevronDown } from "react-icons/go";
 import { PiPencilSimpleLine } from "react-icons/pi";
 import { useState } from "react";
 import ArchiveDelete from "../../components/ArchieveDelete";
+import SwitchModel from "../../components/SwitchModel";
 
-function SideBar({ toggleSidebar }) {
+function SideBar({ toggleSidebar, setIsPencilVisible }) {
+
+    const [showModel, setShowModel] = useState(false);
     const location = useLocation();
     const [showArchiveDeleteDialog, setShowArchiveDeleteDialog] = useState(false);
 
@@ -34,11 +37,13 @@ function SideBar({ toggleSidebar }) {
         if (promptKey) copy(promptKey);
     };
 
-        
+    function handleModel() {
+        setShowModel(!showModel)
+    }
 
     return (
         <>
-            <div className="bg-gray-100 h-screen w-95 z-100 pt-3 pl-3">
+            <div className="relative bg-gray-100 h-screen w-95 z-100 pt-3 pl-3">
                 <div className="flex gap-10 text-xl">
                     <SlNotebook />
                     <button onClick={toggleSidebar}>
@@ -82,7 +87,7 @@ function SideBar({ toggleSidebar }) {
                             </div>
                             <div className="scale-80 ml-2 -translate-y-10 origin-left pb-[30vh]">
                                 <FollowUpQuestions promptKey={promptKey} />
-                                <div className="flex items-center gap-5 mt-5">
+                                <div className="relative flex items-center gap-5 mt-5 z-50">
                                     <div
                                         // onClick={() => handleCopy(followUpText)}
                                         className="flex items-center gap-5 text-sm transition-all duration-500 text-black hover:opacity-100"
@@ -92,13 +97,14 @@ function SideBar({ toggleSidebar }) {
                                     <AiOutlineLike className="text-xl" />
                                     <AiOutlineDislike className="text-xl" />
                                     <AiOutlineSound className="text-xl" />
-                                    <button onClick={toggleSidebar} className="hover:opacity-100 flex gap-3">
+                                    <button onClick={() => { toggleSidebar(); setIsPencilVisible(true); }} className="hover:opacity-100 flex gap-3">
                                         <PiPencilSimpleLine className="text-xl" />
                                     </button>
-                                    <span className="flex items-center gap-1">
+                                    <span onClick={handleModel} className="flex items-center gap-1">
                                         <FiRefreshCw className="text-xl" />
                                         <GoChevronDown className="text-xl" />
                                     </span>
+
                                 </div>
                             </div>
                         </div>
@@ -137,6 +143,13 @@ function SideBar({ toggleSidebar }) {
                 <div className="bottom-1 fixed text-xs text-gray-700 mx-14">
                     <p>ChatGPT can make mistakes. Check important info.</p>
                 </div>
+
+         
+                {showModel && (
+                    <div className="absolute left-full top-1/2 -translate-y-1/2 ml-2 z-50">
+                        <SwitchModel />
+                    </div>
+                )}
             </div>
         </>
     )

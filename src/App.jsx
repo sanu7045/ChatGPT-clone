@@ -6,20 +6,13 @@ import Voice from "./Guest/Start_Chat/Voice";
 import StreamDisplay from "./Guest/Chat/StreamDisplay";
 import SideBar from "./Guest/Chat/SideBar";
 import { Routes, Route } from "react-router-dom";
-import SearchChats from "./components/SearchChats";
-import TempNavbar from "./components/TempNavbar";
-import Navbar from "./components/Header";
-import TempChat from "./Pages/TempChat";
-import Hero2 from "./components/Hero2";
-import Search from "./components/Search";
-import Upgrade from "./components/Upgrade";
 import { useState } from "react";
 import { Toaster } from "sonner"
-import DeleteChat from "./components/DeleteChat";
 
 function App() {
   const [inputValue, setInputValue] = useState("");
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isPencilVisible, setIsPencilVisible] = useState(true);
 
   const toggleSidebar = () => {
     setIsSidebarOpen((prev) => !prev);
@@ -32,7 +25,7 @@ function App() {
       />
 
       <div className="flex h-screen overflow-hidden">
-        {isSidebarOpen && <SideBar toggleSidebar={toggleSidebar} />}
+        {isSidebarOpen && <SideBar toggleSidebar={toggleSidebar} setIsPencilVisible={setIsPencilVisible} />}
         <div className="flex-1 overflow-y-auto">
           <Routes>
             <Route
@@ -43,15 +36,15 @@ function App() {
             />
             <Route
               path="/display/:promptKey"
-              element={<StreamDisplay toggleSidebar={toggleSidebar} isSidebarOpen={isSidebarOpen} />}
+              element={<StreamDisplay toggleSidebar={toggleSidebar} isSidebarOpen={isSidebarOpen} isPencilVisible={isPencilVisible} setIsPencilVisible={setIsPencilVisible} />}
             />
             <Route path="/Login" element={<Login />} />
             <Route path="/Voice" element={<Voice />} />
           </Routes>
         </div>
       </div>
-      {/* <DeleteChat/> */}
-     
+      
+     {/* <SwitchModel/> */}
     </>
   );
 }
