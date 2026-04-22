@@ -1,5 +1,5 @@
 import useCopyToClipboard from "../../hooks/useCopyToClipboard";
-import { PiCopyLight } from "react-icons/pi";
+import { PiCopyLight, PiPencilSimpleLineLight } from "react-icons/pi";
 
 export default function PromptHeader({ sentence, className, showCopy = true }) {
   const { copied, copy } = useCopyToClipboard();
@@ -15,14 +15,14 @@ export default function PromptHeader({ sentence, className, showCopy = true }) {
         </div>
       </div>
       {showCopy && (
-        <div className="justify-end flex">
+        <div className="flex justify-end gap-3 mt-2">
           <button
             onClick={handleCopy}
             className="flex items-center gap-2 text-sm transition-all duration-500 text-black hover:opacity-100"
           >
-            <PiCopyLight className="text-xl" />
-            {copied ? <span>copied</span> : <span></span>}
+            {copied ? <span>copied</span> : <PiCopyLight className="text-xl" />}
           </button>
+            <PiPencilSimpleLineLight className="text-xl" />
         </div>
       )}
     </>

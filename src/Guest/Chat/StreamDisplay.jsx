@@ -9,6 +9,9 @@ import FollowUpQuestions from "../../components/FollowUpQuestions.jsx";
 import PromptHeader from "./PromptHeader.jsx";
 import SmarterResponses from "./smarterResponses.jsx";
 import Message from "./Message.jsx";
+import { AiOutlineLike, AiOutlineDislike, AiOutlineSound } from "react-icons/ai";
+import { FiRefreshCw } from "react-icons/fi";
+import { GoChevronDown } from "react-icons/go";
 
 export default function StreamDisplay({ toggleSidebar, isSidebarOpen }) {
   const { promptKey } = useParams();
@@ -114,17 +117,23 @@ export default function StreamDisplay({ toggleSidebar, isSidebarOpen }) {
                 <div className="flex flex-col">
                   {/* The buttons will only render when isDone is true */}
                   {showDoneFeatures && (
-                    <div className="flex gap-5 mt-5">
-                      <button
+                    <div className="flex items-center gap-5 mt-5">
+                      <div
                         onClick={() => handleCopy(followUpText)}
-                        className="flex items-center gap-2 text-sm transition-all duration-500 text-black hover:opacity-100"
+                        className="flex items-center gap-3 text-sm transition-all duration-500 text-black hover:opacity-100"
                       >
-                        <PiCopyLight className="text-xl" />
-                        {copied ? <span>copied</span> : <span></span>}
-                      </button>
-                      <button onClick={toggleSidebar} className="hover:opacity-100">
+                        {copied ? <span>copied</span> : <PiCopyLight className="text-xl text-black" />}
+                      </div>
+                      <AiOutlineLike className="text-xl" />
+                      <AiOutlineDislike className="text-xl" />
+                      <AiOutlineSound className="text-xl" />
+                      <button onClick={toggleSidebar} className="hover:opacity-100 flex gap-3">
                         <PiPencilSimpleLine className="text-xl" />
                       </button>
+                      <span className="flex items-center gap-1">
+                        <FiRefreshCw className="text-xl" />
+                        <GoChevronDown className="text-xl" />
+                      </span>
                     </div>
                   )}
                 </div>

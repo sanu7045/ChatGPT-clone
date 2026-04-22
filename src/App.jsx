@@ -14,7 +14,7 @@ import Hero2 from "./components/Hero2";
 import Search from "./components/Search";
 import Upgrade from "./components/Upgrade";
 import { useState } from "react";
-
+import { Toaster } from "sonner"
 function App() {
   const [inputValue, setInputValue] = useState("");
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -24,6 +24,11 @@ function App() {
   };
   return (
     <>
+      <Toaster
+        position="top-center"
+      
+      />
+
       <div className="flex h-screen overflow-hidden">
         {isSidebarOpen && <SideBar toggleSidebar={toggleSidebar} />}
         <div className="flex-1 overflow-y-auto">

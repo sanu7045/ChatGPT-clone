@@ -13,24 +13,29 @@ import Input from "../../components/Input";
 import Button from "../../components/Button";
 import { faPaperclip, faGlobe, faArrowUp, faLightbulb } from "@fortawesome/free-solid-svg-icons";
 import { TiDocumentText } from "react-icons/ti";
-
+import { AiOutlineLike, AiOutlineDislike, AiOutlineSound } from "react-icons/ai";
+import { FiRefreshCw } from "react-icons/fi";
+import { GoChevronDown } from "react-icons/go";
+import { PiPencilSimpleLine } from "react-icons/pi";
+import { useState } from "react";
+import ArchiveDelete from "../../components/ArchieveDelete";
 
 function SideBar({ toggleSidebar }) {
     const location = useLocation();
+    const [showArchiveDeleteDialog, setShowArchiveDeleteDialog] = useState(false);
 
     // Extract promptKey from /display/:promptKey
     const match = location.pathname.match(/\/display\/(.+)/);
     const promptKey = match ? decodeURIComponent(match[1]) : null;
 
     const contentToRender = useContentLookup(promptKey);
-    const { copied: promptCopied, copy } = useCopyToClipboard();
+    const { copied: promptCopied, copy, copied } = useCopyToClipboard();
     const handlePromptCopy = () => {
         if (promptKey) copy(promptKey);
     };
 
-   const handleClick = ()=> {
-console.log("clicked")
-    }
+        
+
     return (
         <>
             <div className="bg-gray-100 h-screen w-95 z-100 pt-3 pl-3">
@@ -45,8 +50,10 @@ console.log("clicked")
                             className={` ml-1 mr-25 text-gray-500 text-sm  group-hover:text-gray-600 transition-transform`}
                         />
                     </span>
-                    <BsThreeDotsVertical onClick={handleClick}/>
-
+                    <BsThreeDotsVertical className="cursor-pointer" onClick={() => setShowArchiveDeleteDialog(!showArchiveDeleteDialog)} />
+                    <div className="absolute left-100">
+                        {showArchiveDeleteDialog && <ArchiveDelete />}
+                    </div>
                 </div>
 
                 <div className="flex-1 overflow-y-auto px-5 mt-4 no-scrollbar">
@@ -56,7 +63,7 @@ console.log("clicked")
                                 <div className="scale-80 origin-right h-full  rounded-3xl shadow-xl border flex items-center justify-end">
                                     <PromptHeader
                                         sentence={promptKey}
-                                        className=" flex items-center"
+                                        className=" flex items-center "
                                         showCopy={false}
                                     />
                                 </div>
@@ -69,12 +76,30 @@ console.log("clicked")
                                 </button>
                             </div>
                             <div className="px-2 transition-all duration-500">
-                                <p className="text-gray-700 text-sm leading-relaxed">
+                                <p className="text-gray-700 text-sm leading-relaxed w-full">
                                     {contentToRender || "Response not found."}
                                 </p>
                             </div>
                             <div className="scale-80 ml-2 -translate-y-10 origin-left pb-[30vh]">
                                 <FollowUpQuestions promptKey={promptKey} />
+                                <div className="flex items-center gap-5 mt-5">
+                                    <div
+                                        // onClick={() => handleCopy(followUpText)}
+                                        className="flex items-center gap-5 text-sm transition-all duration-500 text-black hover:opacity-100"
+                                    >
+                                        {copied ? <span>copied</span> : <PiCopyLight className="text-xl text-black" />}
+                                    </div>
+                                    <AiOutlineLike className="text-xl" />
+                                    <AiOutlineDislike className="text-xl" />
+                                    <AiOutlineSound className="text-xl" />
+                                    <button onClick={toggleSidebar} className="hover:opacity-100 flex gap-3">
+                                        <PiPencilSimpleLine className="text-xl" />
+                                    </button>
+                                    <span className="flex items-center gap-1">
+                                        <FiRefreshCw className="text-xl" />
+                                        <GoChevronDown className="text-xl" />
+                                    </span>
+                                </div>
                             </div>
                         </div>
                     )}
